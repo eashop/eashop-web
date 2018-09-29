@@ -1,0 +1,26 @@
+//nav {
+//  height: 50px;
+//  background-color: #a7c3ef;
+//}
+//
+//.nav-header {
+//  margin: 0px 25px;
+//}
+//
+//.category-menu {
+//  display: flex;
+//  flex-direction: row;
+//}
+//
+//.category {
+//  padding: 12px 10px;
+//}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+
+  li {
+    padding: 0px 10px;
+  }
+}
