@@ -3,18 +3,25 @@ import { NgModule } from '@angular/core';
 /* components */
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
+import {SliderComponent} from "../slider/slider.component";
+import {BrowserModule} from "@angular/platform-browser";
+
 
 
 @NgModule({
   imports: [
+    BrowserModule
   ],
   declarations: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SliderComponent
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SliderComponent,
+    BrowserModule
   ]
 })
 export class SharedModule { }

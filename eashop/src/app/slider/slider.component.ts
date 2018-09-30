@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./slider.component.scss']
 })
 export class SliderComponent implements OnInit {
-
+  slides;
   constructor() { }
 
   ngOnInit() {
+    this.slides = [
+      "slide1",
+      "slide2",
+      "slide3",
+    ]
   }
 
 }
