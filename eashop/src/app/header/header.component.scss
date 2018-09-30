@@ -16,11 +16,48 @@
 //  padding: 12px 10px;
 //}
 
+nav {
+  height: 70px;
+  background-color: white !important;
+  border-bottom: 1px solid #f0f0f0;
+}
+
 .menu {
   display: flex;
   flex-direction: row;
 
   li {
     padding: 0px 10px;
+
+    a {
+      cursor: pointer;
+
+      i {
+        font-size: 17px;
+        font-weight: 600;
+        color: #E53935;
+
+        &:hover {
+          color: rgba(0,0,0,.7);
+        }
+      }
+    }
   }
+}
+
+.categories {
+  a {
+    font-size: 17px;
+    color: #E53935;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+
+ul {
+  text-align: center;
+}
+
+#navbarMenu {
+  justify-content: space-between;
 }
