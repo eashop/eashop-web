@@ -10,6 +10,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SharedModule } from './shared/shared.module';
 import {AppRoutingModule} from './app-routing.module';
+import {WindowService} from "./shared/services/window.service";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,9 @@ import {AppRoutingModule} from './app-routing.module';
     ModalModule.forRoot()
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
-  providers: [],
+  providers: [
+    WindowService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
