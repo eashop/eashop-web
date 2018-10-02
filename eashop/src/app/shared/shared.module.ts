@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 
+
 /* components */
 import {HeaderComponent} from '../header/header.component';
 import {FooterComponent} from '../footer/footer.component';
@@ -10,8 +11,7 @@ import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
   imports: [
-    BrowserModule
-  ],
+  BrowserModule],
   declarations: [
     HeaderComponent,
     FooterComponent,
