@@ -14,7 +14,7 @@ export class WindowService {
   //   Observable.fromEvent(window, 'resize')
   //     .map(this.getWindowWidth())
   //     .subscribe(windowSize$);
-  }
+
 
   // ngOnInit() {}
   //
