@@ -6,11 +6,8 @@
   </ol>
   <div class="carousel-inner" >
     <ng-container *ngFor="let slide of slides; let i = index">
-      <div [ngClass]="{'active': i===0}" class="carousel-item  {{slide}}" ></div>
+      <div [ngClass]="{'active': i===0}" class="carousel-item" [ngStyle]="{'background-image': 'url(' + slide + ')'}"></div>
     </ng-container>
-    <!--<div  class="carousel-item active slide1" ></div>-->
-    <!--<div  class="carousel-item  slide2" ></div>-->
-    <!--<div  class="carousel-item  slide3" ></div>-->
   </div>
   <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

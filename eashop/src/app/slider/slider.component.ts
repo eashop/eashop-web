@@ -3,7 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.scss']
+  styleUrls: ['./slider.component.scss'],
+  host: {
+    '(window:resize)': 'onResize($event)'
+  }
 })
 export class SliderComponent implements OnInit {
   slides;
@@ -11,10 +14,9 @@ export class SliderComponent implements OnInit {
 
   ngOnInit() {
     this.slides = [
-      "slide1",
-      "slide2",
-      "slide3",
+        "../../assets/images/slide1.jpg",
+        "../../assets/images/slide2.jpg",
+        "../../assets/images/slide3.jpg",
     ]
   }
-
 }
