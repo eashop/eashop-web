@@ -4,9 +4,6 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],
-  host: {
-    '(window:resize)': 'onResize($event)'
-  }
 })
 export class SliderComponent implements OnInit {
   slides;
@@ -19,4 +16,5 @@ export class SliderComponent implements OnInit {
         "../../assets/images/slide3.jpg",
     ]
   }
+
 }

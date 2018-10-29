@@ -1,0 +1,19 @@
+.product-card {
+  width: 200px;
+  height: 350px;
+  box-shadow: 1px 1px 1px 1px #878c94;
+  margin: 10px;
+
+  .product-img-wrapper {
+    width: inherit;
+
+    img { width: inherit; }
+  }
+
+  p.price { text-align: center; }
+
+  .product-links-wrapper,
+  .product-content-wrapper { margin: 0 10px; }
+}
+
+

@@ -6,7 +6,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   host: {
-    '(window:resize)': 'onResize($event)'
+    '(window:resize)': 'onResize()'
   }
 })
 
