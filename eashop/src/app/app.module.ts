@@ -10,7 +10,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SharedModule } from './shared/shared.module';
 import {AppRoutingModule} from './app-routing.module';
-import {WindowService} from "./shared/services/window.service";
+import {WindowService} from './shared/services/window.service';
+import { GoodsService } from './api/services/goodsService';
+import { AccountService } from './api/services/accountService';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,13 +26,16 @@ import {WindowService} from "./shared/services/window.service";
     SharedModule,
     AppRoutingModule,
     BrowserModule,
+    HttpClientModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot()
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [
-    WindowService
+    WindowService,
+    GoodsService,
+    AccountService
   ],
   bootstrap: [AppComponent]
 })
