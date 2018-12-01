@@ -18,12 +18,12 @@ import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductDetailPageComponent } from './product-detail-page/product-detail-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductCardBigComponent } from './product-card-big/product-card-big.component';
-import {RouterModule} from "@angular/router";
 import {ProductCardComponent} from "./product-card/product-card.component";
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
 import {SliderComponent} from "./slider/slider.component";
 import {ProductsListComponent} from "./products-list/products-list.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -45,6 +45,7 @@ import {ProductsListComponent} from "./products-list/products-list.component";
   imports: [
     AppRoutingModule,
     BrowserModule,
+    FormsModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

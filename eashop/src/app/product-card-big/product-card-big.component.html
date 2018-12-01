@@ -1,13 +1,13 @@
 <div class="container">
-  <div >
+  <div>
     <div class="product-wrapper">
       <div class="row" *ngIf="product">
-        <div class="col-6"><img src="{{product.image}}" alt="{{product.name}}"></div>
+        <div class="col-6 img-wrapper"><img src="{{product.image}}" alt="{{product.name}}"></div>
         <div class="col-6">
           <h3 *ngIf="product">{{product.name | uppercase}}</h3>
-          <p>{{product.description}}</p>
-          <p class="price">{{product.price}}</p>
-          <p class="size">{{product.size}}</p>
+          <p class="description">{{product.description}}</p>
+          <p class="price"><span class="label">price:</span>{{product.price}} UAH</p>
+          <p class="size"><span class="label">size:</span>{{product.size}}</p>
         </div>
       </div>
     </div>

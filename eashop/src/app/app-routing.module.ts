@@ -13,7 +13,9 @@ const routes: Routes = [
   { path: 'product/:id', component: ProductDetailPageComponent },
   { path: 'not-found', component: NotFoundComponent},
   { path: 'category', component: CategoryPageComponent },
-  { path: 'add-product', component: AddNewProductComponent}
+  { path: 'category/man', component: CategoryPageComponent },
+  { path: 'category/woman', component: CategoryPageComponent },
+  { path: 'add-product', component: AddNewProductComponent }
 ];
 
 @NgModule({

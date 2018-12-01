@@ -6,12 +6,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-  viewMorePath = '/category'
   @Input('product') product;
   constructor() { }
 
   ngOnInit() {
-    console.log(this.product);
   }
 
 }

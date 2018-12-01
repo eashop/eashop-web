@@ -3,8 +3,16 @@
 <div class="product-list-title-wrapper">
   <p class="title">New</p>
 </div>
-<app-products-list [productsAmount]="productsAmount"></app-products-list>
-<div class="action-wrapper">
-  <button [routerLink]="viewMorePath"  class="btn btn-light action-view-more">View more</button>
+
+<div class="products">
+  <div class="products-list-wrapper">
+    <div *ngFor="let product of goods">
+      <app-product-card [product]="product"></app-product-card>
+    </div>
+  </div>
+  <div class="action-wrapper">
+    <button [routerLink]="['/category']" class="btn btn-light action-view-more">View more</button>
+  </div>
 </div>
+
 <app-footer></app-footer>

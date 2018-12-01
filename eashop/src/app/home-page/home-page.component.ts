@@ -10,9 +10,21 @@ import { Pagination } from '../api/models/pagination';
 })
 export class HomePageComponent implements OnInit {
 
-  viewMorePath = '/category'
-  productsAmount: number = 12;
-  constructor() { }
+  pageNumber: number = 1;
+  goods: Goods[];
+  pagination: Pagination;
+  productsAmount: number = 3;
+  constructor(private goodsService: GoodsService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.productsAmount = Number(this.productsAmount);
+    this.pagination = new Pagination(this.pageNumber, this.productsAmount);
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.goodsService.getGoods(this.pagination).then(data => {
+      this.goods = data;
+    });
+  }
 }

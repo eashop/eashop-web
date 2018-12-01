@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {GoodsService} from "../api/services/goodsService";
 import {Goods} from "../api/models/goods";
 import {Pagination} from "../api/models/pagination";
+import {BehaviorSubject, Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-products-list',
@@ -19,11 +20,19 @@ export class ProductsListComponent implements OnInit {
   ngOnInit() {
     this.productsAmount = Number(this.productsAmount);
     this.pagination = new Pagination(this.pageNumber, this.productsAmount);
-     this.goodsService.getGoods(this.pagination).then(data => {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.goodsService.getGoods(this.pagination).then(data => {
       this.goods = data;
+      console.log(data);
     });
   }
 
-
-
+  showMoreProducts() {
+    this.productsAmount+=2;
+    this.pagination.pageSize = this.productsAmount;
+    this.getProducts();
+  }
 }
