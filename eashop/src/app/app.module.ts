@@ -9,11 +9,13 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SharedModule } from './shared/shared.module';
-import {AppRoutingModule} from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { GoodsService } from './api/services/goodsService';
 import { AccountService } from './api/services/accountService';
 import { HttpClientModule } from '@angular/common/http';
 import { CategoryPageComponent } from './category-page/category-page.component';
+import { ProductDetailPageComponent } from './product-detail-page/product-detail-page.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { CategoryPageComponent } from './category-page/category-page.component';
     LoginComponent,
     RegistrationComponent,
     HomePageComponent,
+    ProductDetailPageComponent,
+    NotFoundComponent,
     CategoryPageComponent
   ],
   imports: [
