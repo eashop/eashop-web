@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GoodsService} from "../api/services/goodsService";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Category} from "../api/models/category";
+import {CategoryService} from "../api/services/categoryService";
 
 @Component({
   selector: 'app-add-new-product',
@@ -9,6 +11,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class AddNewProductComponent implements OnInit {
 
+  categories: Category[];
   productForm: FormGroup;
   @ViewChild('productFormDirective') productFormDirective;
   productFormErrors = {
@@ -30,13 +33,14 @@ export class AddNewProductComponent implements OnInit {
   };
 
   constructor(
+    private  categoryService: CategoryService,
     private goodsService: GoodsService,
     private formBuilder: FormBuilder) {
     this.createForm();
   }
 
   ngOnInit() {
-
+    this.getCategories();
   }
 
   createForm() {
@@ -47,7 +51,7 @@ export class AddNewProductComponent implements OnInit {
       price: 0,
       size: ['', Validators.required],
       active: false,
-      categoryId: 1
+      categoryId: '',
     });
 
     this.productForm.valueChanges
@@ -100,8 +104,18 @@ export class AddNewProductComponent implements OnInit {
       price: 0,
       size: '',
       active: false,
-      categoryId: 1
+      categoryId: ''
     });
+  }
+
+  getCategories() {
+     this.categoryService.getCategories()
+      .then((categories) => {
+        this.categories = categories;
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
 
 }
