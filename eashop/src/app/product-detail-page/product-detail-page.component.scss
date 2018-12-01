@@ -21,3 +21,21 @@ img {
 }
 
 .goBackLink {cursor: pointer;}
+
+.content-product-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.product-info-wrapper {
+  padding: 0 35px;
+}
+
+@media (max-width: 768px) {
+  .content-product-wrapper {
+    flex-wrap: wrap;
+  }
+  .product-info-wrapper {
+    padding: 25px;
+  }
+}

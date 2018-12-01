@@ -12,7 +12,7 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 export class ProductsListComponent implements OnInit {
   pageNumber = 1;
   pagination: Pagination;
-  //goods: Goods[];
+  searchValue: string;
   @Input('productsAmount') productsAmount;
   @Input('products') goods;
   constructor(private goodsService: GoodsService) { }
@@ -20,7 +20,6 @@ export class ProductsListComponent implements OnInit {
   ngOnInit() {
     this.productsAmount = Number(this.productsAmount);
     this.pagination = new Pagination(this.pageNumber, this.productsAmount);
-    // this.getProducts();
   }
 
   getProducts() {
@@ -31,8 +30,16 @@ export class ProductsListComponent implements OnInit {
   }
 
   showMoreProducts() {
-    this.productsAmount+=2;
+    this.productsAmount+=6;
     this.pagination.pageSize = this.productsAmount;
     this.getProducts();
+  }
+
+  doSearch(){
+    if(this.searchValue != '') {
+      this.goodsService.searchGoods(this.searchValue, 9, 1).then(data => {
+        this.goods = data;
+      });
+    }
   }
 }

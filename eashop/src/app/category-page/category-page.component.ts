@@ -37,12 +37,10 @@ export class CategoryPageComponent implements OnInit {
     if(id) {
       this.goodsService.getGoodsFromCategory(id).then(data => {
         this.products = data;
-        console.log(data);
       });
     } else {
       this.goodsService.getGoods(this.pagination).then(data => {
         this.products = data;
-        console.log(data);
       });
     }
   }

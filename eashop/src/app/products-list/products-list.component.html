@@ -1,10 +1,11 @@
 <div class="content-wrapper">
+  <div class="search"><input placeholder="Пошук" [(ngModel)]="searchValue" (keyup)="doSearch()" type="text"><i (click)="doSearch()" class="fas fa-search"></i></div>
   <div class="products-list-wrapper">
     <div class="list" *ngFor="let product of goods">
       <app-product-card [product]="product"></app-product-card>
     </div>
   </div>
-  <div class="action-wrapper">
+  <div class="action-wrapper" *ngIf="!searchValue">
     <button (click)="showMoreProducts()" class="btn btn-light action-view-more">View more</button>
   </div>
 </div>

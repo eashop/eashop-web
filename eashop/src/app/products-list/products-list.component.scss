@@ -11,3 +11,18 @@
   align-items: center;
   padding: 25px;
 }
+
+input {
+  padding-left: 20px;
+}
+
+.search {
+  position: relative;
+  .fa-search{
+      position: absolute;
+      top: 7px;
+      right: 6px;
+      color: rgba(0, 0, 0, 0.7);
+      font-size: 15px;
+  }
+}

@@ -66,4 +66,8 @@ export class GoodsService {
         return data.filter(data => data.categoryId === id);
       });
     }
+
+    async searchGoods(name: string, pageSize: number, pageNumber: number): Promise<any> {
+      return this.http.post(`${API_URL}/Goods/search`, {name, pageSize, pageNumber}).toPromise();
+    }
 }

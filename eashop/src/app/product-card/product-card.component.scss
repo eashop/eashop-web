@@ -1,14 +1,18 @@
 .product-card {
-  width: 200px;
-  height: 350px;
+  width: 225px;
+  height: 425px;
   box-shadow: 1px 1px 1px 1px #878c94;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
   .product-img-wrapper {
     width: inherit;
 
     img {
-      width: 200px;
+      width: inherit;
       height: 270px;
       object-fit: contain;
     }
@@ -21,6 +25,8 @@
 
   .product-links-wrapper,
   .product-content-wrapper { margin: 0 10px; }
+
+  .product-links-wrapper {padding-bottom: 10px;}
 
   a {
     &.action-details, &.action-buy {
