@@ -1,14 +1,7 @@
 
 <div class="products-list-wrapper">
-  <app-product-card></app-product-card>
-  <app-product-card></app-product-card>
-  <app-product-card></app-product-card>
-  <app-product-card></app-product-card>
-  <app-product-card></app-product-card>
-  <app-product-card></app-product-card>
-  <app-product-card></app-product-card>
-  <app-product-card></app-product-card>
-  <app-product-card></app-product-card>
-  <app-product-card></app-product-card>
+  <div class="list" *ngFor="let product of goods">
+    <app-product-card [product]="product"></app-product-card>
+  </div>
 </div>
 

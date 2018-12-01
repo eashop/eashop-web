@@ -7,9 +7,13 @@
   .product-img-wrapper {
     width: inherit;
 
-    img { width: inherit; }
+    img {
+      width: 200px;
+      height: 270px;
+      object-fit: contain;
+    }
 
-    &:hover { background-color: black;
+    &:hover {
       opacity: 0.8; }
   }
 
