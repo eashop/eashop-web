@@ -1,63 +1,56 @@
-<form novalidate [formGroup]="productForm" #productFormDirective="ngForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+<div class="container">
+  <div class="form-wrapper">
+    <h3 class="title">Форма додвання новго продукту</h3>
+    <form novalidate [formGroup]="productForm" #productFormDirective="ngForm" (ngSubmit)="onSubmit()">
 
-  <div class="form-group row">
-    <div class="col-md-6">
-      <input formControlName="name" type="text" class="form-control" name="name" placeholder="Product Name" autocomplete="off">
-      <p *ngIf="productFormErrors.name">
-        {{ productFormErrors.name }}
-      </p>
-    </div>
+        <div class="field">
+          <label for="productnName">Назва товару</label>
+          <input formControlName="name" type="text" id="productnName" class="form-control" name="name" autocomplete="off">
+          <p *ngIf="productFormErrors.name">
+            {{ productFormErrors.name }}
+          </p>
+        </div>
+
+        <div class="field isActive">
+          <input formControlName="active" type="checkbox" id="isActive" name="isActive">
+          <label class="margin-r-10px isActiveProduct" for="isActive">Активувати продукт</label>
+        </div>
+
+        <div class="field">
+          <label for="productImage">Фото продукту</label>
+          <input formControlName="image" type="text" id="productImage" class="form-control" name="image"  autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="productPrice">Ціна</label>
+          <input formControlName="price" type="number" id="productPrice" class="form-control" name="price"  autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="productSize">Розімр</label>
+          <input formControlName="size" type="text" id="productSize" class="form-control" name="size" placeholder="Size" autocomplete="off">
+          <span *ngIf="productFormErrors.size">
+            {{ productFormErrors.size }}
+          </span>
+        </div>
+
+        <div class="field">
+          <label for="categoryName">Категорія</label>
+            <input formControlName="categoryId" id="categoryName" type="number" required class="form-control" name="categoryId"  autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="productDescription">Опис продукту</label>
+          <textarea id="productDescription" formControlName="description" rows=5></textarea>
+          <p *ngIf="productFormErrors.description">
+            {{ productFormErrors.description }}
+          </p>
+        </div>
+
+        <div class="field">
+          <button type="submit" [disabled]="productForm.invalid" class="btn btn-light action-view-more">Додати</button>
+        </div>
+
+    </form>
   </div>
-
-  <div class="form-group row">
-    <div class="col-md-6">
-      <textarea formControlName="description" placeholder="Product Description" rows=12></textarea>
-      <p *ngIf="productFormErrors.description">
-        {{ productFormErrors.description }}
-      </p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-md-6">
-      <input formControlName="image" type="text"  class="form-control" name="image" placeholder="Image" autocomplete="off">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-md-6">
-      <input formControlName="price" type="number"  class="form-control" name="price" placeholder="Price" autocomplete="off">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-md-6">
-      <input formControlName="size" type="text"  class="form-control" name="size" placeholder="Size" autocomplete="off">
-      <p *ngIf="productFormErrors.size">
-        {{ productFormErrors.size }}
-      </p>
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-md-6">
-      <label class="margin-r-10px" for="isActive">Is Product Active </label>
-      <input formControlName="active" type="checkbox" id="isActive" name="isActive">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="col-md-6">
-      <input formControlName="categoryId" type="number" required class="form-control" name="categoryId" placeholder="Category" autocomplete="off">
-    </div>
-  </div>
-
-  <div class="form-group row">
-    <div class="offset-md-3 col-md-3">
-      <button type="submit" [disabled]="productForm.invalid">
-        Submit
-      </button>
-    </div>
-  </div>
-
-</form>
+</div>

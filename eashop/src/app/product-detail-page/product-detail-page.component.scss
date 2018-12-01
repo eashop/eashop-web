@@ -1,0 +1,21 @@
+img {
+  width: 350px;
+  height: 400px;
+  object-fit: contain;
+  border: 1px solid #f0f0f0;
+  padding: 10px;
+  box-shadow: 1px 1px 1px 1px #cbcdd2;
+}
+.product-wrapper {padding: 50px;}
+.description{font-size: 15px;}
+.size,
+.price {
+  color: #E53935;
+  font-weight: 600;
+  font-size: 16px;
+  .label {
+    padding-right: 10px;
+    color: black;
+    font-weight: 500;
+  }
+}

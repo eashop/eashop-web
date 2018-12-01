@@ -22,7 +22,6 @@ export class ProductDetailPageComponent implements OnInit {
       return this.goodsService.getSingleGoods(productId)
         .then((product) => {
           this.product = product;
-          console.log(this.product);
         })
         .catch((error) => {
           console.log(error);
