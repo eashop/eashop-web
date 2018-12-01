@@ -9,17 +9,21 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { SharedModule } from './shared/shared.module';
-import {AppRoutingModule} from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { GoodsService } from './api/services/goodsService';
 import { AccountService } from './api/services/accountService';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductDetailPageComponent } from './product-detail-page/product-detail-page.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    HomePageComponent
+    HomePageComponent,
+    ProductDetailPageComponent,
+    NotFoundComponent
   ],
   imports: [
     SharedModule,
