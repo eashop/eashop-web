@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -8,7 +10,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { HomePageComponent } from './home-page/home-page.component';
-import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { GoodsService } from './api/services/goodsService';
 import { AccountService } from './api/services/accountService';
@@ -33,20 +34,24 @@ import {ProductsListComponent} from "./products-list/products-list.component";
     ProductDetailPageComponent,
     NotFoundComponent,
     CategoryPageComponent,
-    ProductCardBigComponent,
     HeaderComponent,
     FooterComponent,
     SliderComponent,
     ProductCardComponent,
-    ProductsListComponent
+    ProductCardBigComponent,
+    ProductsListComponent,
+    AddNewProductComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    RouterModule
   ],
   exports: [BsDropdownModule, TooltipModule, ModalModule],
   providers: [

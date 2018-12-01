@@ -6,7 +6,7 @@
     <p class="price">{{product.price}} <span>UAH</span></p>
   </div>
   <div class="product-links-wrapper">
-    <button class="btn action-details" [routerLink]="['/product', product.id]" >details</button>
+    <button [routerLink]="['/product', product.id]" class="btn action-details">details</button>
     <a class="btn action-buy">buy</a>
     <a class="btn action-like"><i class="far fa-heart"></i></a>
   </div>
