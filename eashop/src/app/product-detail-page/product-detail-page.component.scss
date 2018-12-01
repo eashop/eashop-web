@@ -6,7 +6,7 @@ img {
   padding: 10px;
   box-shadow: 1px 1px 1px 1px #cbcdd2;
 }
-.product-wrapper {padding: 50px;}
+.product-wrapper {padding: 50px 0; .row{padding: 15px 0;}}
 .description{font-size: 15px;}
 .size,
 .price {
@@ -19,3 +19,5 @@ img {
     font-weight: 500;
   }
 }
+
+.goBackLink {cursor: pointer;}

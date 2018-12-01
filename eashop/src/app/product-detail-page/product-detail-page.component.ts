@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router, ParamMap} from "@angular/router";
 import { Goods } from "../api/models/goods";
 import { GoodsService } from "../api/services/goodsService";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -14,7 +15,9 @@ export class ProductDetailPageComponent implements OnInit {
   constructor(
     private goodsService: GoodsService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private location: Location) { }
+
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -30,4 +33,7 @@ export class ProductDetailPageComponent implements OnInit {
     });
   }
 
+  goOnPrevPage() {
+    this.location.back();
+  }
 }

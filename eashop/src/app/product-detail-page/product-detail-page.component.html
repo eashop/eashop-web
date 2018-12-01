@@ -1,9 +1,10 @@
 <div class="container">
   <div>
     <div class="product-wrapper">
+      <a class="goBackLink" (click)="goOnPrevPage()">Go back</a>
       <div class="row" *ngIf="product">
-        <div class="col-6 img-wrapper"><img src="{{product.image}}" alt="{{product.name}}"></div>
-        <div class="col-6">
+        <div class="col-6  img-wrapper"><img src="{{product.image}}" alt="{{product.name}}"></div>
+        <div class="col-6 ">
           <h3 *ngIf="product">{{product.name | uppercase}}</h3>
           <p class="description">{{product.description}}</p>
           <p class="price"><span class="label">price:</span>{{product.price}} UAH</p>

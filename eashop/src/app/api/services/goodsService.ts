@@ -60,4 +60,10 @@ export class GoodsService {
         const r = await promise;
         return this.http.delete(`${API_URL}/goods/${id}`).toPromise();
     }
+
+    async getGoodsFromCategory(id: number) {
+      return this.getGoods().then(data => {
+        return data.filter(data => data.categoryId === id);
+      });
+    }
 }

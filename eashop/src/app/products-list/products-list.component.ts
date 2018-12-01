@@ -12,15 +12,15 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 export class ProductsListComponent implements OnInit {
   pageNumber = 1;
   pagination: Pagination;
-  goods: Goods[];
+  //goods: Goods[];
   @Input('productsAmount') productsAmount;
-
+  @Input('products') goods;
   constructor(private goodsService: GoodsService) { }
 
   ngOnInit() {
     this.productsAmount = Number(this.productsAmount);
     this.pagination = new Pagination(this.pageNumber, this.productsAmount);
-    this.getProducts();
+    // this.getProducts();
   }
 
   getProducts() {

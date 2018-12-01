@@ -34,18 +34,17 @@
 
         <div class="field">
           <label for="productSize">Розімр</label>
-          <input formControlName="size" type="text" id="productSize" class="form-control" name="size" placeholder="Size" autocomplete="off">
+          <input formControlName="size" type="text" id="productSize" class="form-control" name="size" autocomplete="off">
           <span *ngIf="productFormErrors.size">
             {{ productFormErrors.size }}
           </span>
         </div>
 
-        <div class="form-group row">
-          <div class="col-md-6">
-            <select>
+        <div class="field">
+          <label for="categoryName">Назва категорії</label>
+            <select class="custom-select" id="categoryName">
               <option *ngFor="let category of categories">{{ category.name }}</option>
             </select>
-          </div>
         </div>
 
         <div class="field">

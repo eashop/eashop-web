@@ -11,4 +11,6 @@ export class CategoryService {
   getCategories(): Promise<any> {
     return this.http.get(`${API_URL}/categories`).toPromise();
   }
+
+
 }
