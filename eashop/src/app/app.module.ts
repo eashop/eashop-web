@@ -16,6 +16,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryPageComponent } from './category-page/category-page.component';
 import { ProductDetailPageComponent } from './product-detail-page/product-detail-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ProductCardBigComponent } from './product-card-big/product-card-big.component';
+import {RouterModule} from "@angular/router";
+import {ProductCardComponent} from "./product-card/product-card.component";
+import {HeaderComponent} from "./header/header.component";
+import {FooterComponent} from "./footer/footer.component";
+import {SliderComponent} from "./slider/slider.component";
+import {ProductsListComponent} from "./products-list/products-list.component";
 
 @NgModule({
   declarations: [
@@ -25,10 +32,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HomePageComponent,
     ProductDetailPageComponent,
     NotFoundComponent,
-    CategoryPageComponent
+    CategoryPageComponent,
+    ProductCardBigComponent,
+    HeaderComponent,
+    FooterComponent,
+    SliderComponent,
+    ProductCardComponent,
+    ProductsListComponent
   ],
   imports: [
-    SharedModule,
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
