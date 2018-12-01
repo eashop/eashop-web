@@ -17,18 +17,30 @@ export class AddNewProductComponent implements OnInit {
   productFormErrors = {
     'name': '',
     'description': '',
+    'image': '',
+    'price': '',
     'size': ''
   };
   validationMessages = {
     'name': {
       'required': 'Product Name is required.',
-      'minlength': 'Product Name must be at least 2 characters long.'
+      'minlength': 'Product Name must be at least 2 characters long.',
+      'maxlength': 'Product name cannot be more than 50 characters long.'
     },
     'description': {
       'required': 'Description of product is required.'
     },
+    'image': {
+      'required': 'Image of product is required.',
+      'maxlength': 'Image url cannot be more than 255 characters long.'
+    },
+    'price': {
+      'required': 'Price of product is required.',
+      'min': 'Price cannot be less than zero'
+    },
     'size': {
-      'required': 'Size of product is required.'
+      'required': 'Size of product is required.',
+      'maxlength': 'Size cannot be more than 10 characters long.'
     }
   };
 
@@ -45,13 +57,13 @@ export class AddNewProductComponent implements OnInit {
 
   createForm() {
     this.productForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', Validators.required],
-      image: ['', Validators.required],
-      price: 0,
-      size: ['', Validators.required],
+      image: ['', [Validators.required, Validators.maxLength(255)]],
+      price: [0, [Validators.required, Validators.min(0)]],
+      size: ['', [Validators.required, Validators.maxLength(10)]],
       active: false,
-      categoryId: '',
+      categoryId: ['Men', [Validators.min(1), Validators.max(6)]],
     });
 
     this.productForm.valueChanges
@@ -85,7 +97,10 @@ export class AddNewProductComponent implements OnInit {
   }
 
   onSubmit() {
-    this.goodsService.createGoods(this.productForm.value)
+    let product = this.productForm.value;
+    product.categoryId = this.getCategoryId(this.productForm.value.categoryId);
+    product.size = product.size.toUpperCase();
+    this.goodsService.createGoods(product)
       .then((product) => {
         console.log("New Product: " + product);
       })
@@ -104,7 +119,7 @@ export class AddNewProductComponent implements OnInit {
       price: 0,
       size: '',
       active: false,
-      categoryId: ''
+      categoryId: 'Men'
     });
   }
 
@@ -116,6 +131,14 @@ export class AddNewProductComponent implements OnInit {
       .catch((error) => {
         console.log(error);
       })
+  }
+
+  getCategoryId(categoryName) {
+    for (let category of this.categories) {
+      if (category.name === categoryName) {
+        return category.id;
+      }
+    }
   }
 
 }

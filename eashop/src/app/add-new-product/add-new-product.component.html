@@ -19,11 +19,17 @@
         <div class="field">
           <label for="productImage">Фото продукту</label>
           <input formControlName="image" type="text" id="productImage" class="form-control" name="image"  autocomplete="off">
+          <p *ngIf="productFormErrors.image">
+            {{ productFormErrors.image }}
+          </p>
         </div>
 
         <div class="field">
           <label for="productPrice">Ціна</label>
           <input formControlName="price" type="number" id="productPrice" class="form-control" name="price"  autocomplete="off">
+          <p *ngIf="productFormErrors.price">
+            {{ productFormErrors.price }}
+          </p>
         </div>
 
         <div class="field">
