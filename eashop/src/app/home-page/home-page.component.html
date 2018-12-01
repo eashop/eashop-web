@@ -3,8 +3,8 @@
 <div class="product-list-title-wrapper">
   <p class="title">New</p>
 </div>
-<app-products-list></app-products-list>
+<app-products-list [productsAmount]="productsAmount"></app-products-list>
 <div class="action-wrapper">
-  <button class="btn btn-light action-view-more">View more</button>
+  <button [routerLink]="viewMorePath"  class="btn btn-light action-view-more">View more</button>
 </div>
 <app-footer></app-footer>

@@ -13,13 +13,15 @@ import {AppRoutingModule} from './app-routing.module';
 import { GoodsService } from './api/services/goodsService';
 import { AccountService } from './api/services/accountService';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoryPageComponent } from './category-page/category-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    HomePageComponent
+    HomePageComponent,
+    CategoryPageComponent
   ],
   imports: [
     SharedModule,
