@@ -37,7 +37,7 @@ export class ProductsListComponent implements OnInit {
 
   doSearch(){
     if(this.searchValue != '') {
-      this.goodsService.searchGoods(this.searchValue, 9, 1).then(data => {
+      this.goodsService.searchGoods(this.searchValue.trim(), 9, 1).then(data => {
         this.goods = data;
       });
     }
