@@ -1,4 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
+import {AccountService} from "../api/services/accountService";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -12,11 +14,12 @@ import {Component, HostListener, OnInit} from '@angular/core';
 
 export class HeaderComponent implements OnInit {
   isMobile;
-
-  constructor() { }
+  authorizationButtonText: string;
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {
     this.isMobile = this.checkIfMobile();
+    this.accountService.isLoggedIn() ? this.authorizationButtonText = 'Вихід' : this.authorizationButtonText = 'Вхід';
   }
 
   onResize() {
@@ -29,4 +32,8 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  navigateToAuthorizationPage() {
+    this.accountService.isLoggedIn() ? this.router.navigate(['/logout']) :
+                                        this.router.navigate(['/login']);
+  }
 }

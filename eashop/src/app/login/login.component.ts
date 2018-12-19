@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -6,10 +7,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
+  @ViewChild('productFormDirective') loginFormDirective;
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) {
+    this.createForm();
+  }
 
   ngOnInit() {
   }
 
+  createForm() {
+    this.loginForm = this.formBuilder.group({
+      login: ['', [Validators.required]],
+      password: ['', Validators.required]
+    });
+
+    this.loginForm.valueChanges
+      .subscribe(data => {
+        this.onDataChanged(data);
+      });
+
+    this.onDataChanged();
+  }
+
+  onDataChanged(data?) {
+
+  }
 }

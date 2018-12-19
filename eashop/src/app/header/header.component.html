@@ -19,18 +19,8 @@
       </ul>
       <ul class="navbar-nav menu">
         <li class="nav-item">
-          <a class="nav-link"><i class="fas fa-search"></i>
-          <span>Search</span>
-        </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"><i class="fas fa-shopping-cart"></i>
-          <span>Cart</span>
-        </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"><i class="fas fa-sign-in-alt"></i>
-          <span>Sign in</span>
+          <a class="nav-link" (click)="navigateToAuthorizationPage()"><i class="fas fa-sign-in-alt"></i>
+          <span>{{authorizationButtonText}}</span>
         </a>
         </li>
       </ul>
