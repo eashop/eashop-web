@@ -1,3 +1,10 @@
+<div class="page-wrapper">
+    <form>
+        <div class="form-check" (click)="renderProductsFromCategory(category.id)" *ngFor="let category of categories; let i = index">
+            <input type="checkbox" class="form-check-input" id="category{{i}}">
+            <label class="form-check-label" for="category{{i}}">{{category.name}}</label>
+        </div>
+    </form>
 
-<app-products-list [products]="products" [productsAmount]="productsAmount"></app-products-list>
-
+    <app-products-list [products]="products" [productsAmount]="productsAmount"></app-products-list>
+</div>

@@ -3,6 +3,8 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {GoodsService} from "../api/services/goodsService";
 import {daLocale} from "ngx-bootstrap";
 import {Pagination} from "../api/models/pagination";
+import {CategoryService} from "../api/services/categoryService";
+import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
   selector: 'app-category-page',
@@ -13,14 +15,19 @@ export class CategoryPageComponent implements OnInit {
   productsAmount: number = 9;
   pagination: Pagination = new Pagination(1, this.productsAmount);
   products;
+  categories = [];
 
   constructor(
+    private categoryService: CategoryService,
     private goodsService: GoodsService,
     private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
     this.checkRoute();
+    this.categoryService.getCategories().then(data => {
+        this.categories = data;
+    });
   }
 
    checkRoute(){
@@ -45,4 +52,11 @@ export class CategoryPageComponent implements OnInit {
     }
   }
 
+  renderProductsFromCategory(id) {
+     this.goodsService.getGoodsFromCategory(id).then(data => {
+        this.products = []
+        this.products = data;
+         console.log(document.querySelector('.form-check-input').nodeValue);
+     });
+  }
 }
