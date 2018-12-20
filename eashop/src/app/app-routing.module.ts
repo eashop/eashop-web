@@ -7,6 +7,7 @@ import {CategoryPageComponent} from "./category-page/category-page.component";
 import {AddNewProductComponent} from "./add-new-product/add-new-product.component";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
+import {AuthGuard} from "./api/guards/auth-guard.service";
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'category/all', component: CategoryPageComponent },
   { path: 'category/men', component: CategoryPageComponent },
   { path: 'category/women', component: CategoryPageComponent },
-  { path: 'add-product', component: AddNewProductComponent },
+  { path: 'add-product', component: AddNewProductComponent,
+    canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'notfound', component: NotFoundComponent }

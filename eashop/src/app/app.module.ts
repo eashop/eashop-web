@@ -26,6 +26,7 @@ import {AddNewProductComponent} from "./add-new-product/add-new-product.componen
 import {CategoryService} from "./api/services/categoryService";
 import {GoodsService} from './api/services/goodsService';
 import {AccountService} from './api/services/accountService';
+import {AuthGuard} from "./api/guards/auth-guard.service";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {AccountService} from './api/services/accountService';
   providers: [
     GoodsService,
     AccountService,
-    CategoryService
+    CategoryService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

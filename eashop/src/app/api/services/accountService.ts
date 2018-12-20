@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { LoginModel } from '../models/loginModel';
-import { API_URL } from '../apiConstants';
+import {API_URL, DEFAULT_USER} from '../apiConstants';
 import { catchError, map } from 'rxjs/internal/operators';
 import { throwError, Observable } from 'rxjs';
 
@@ -12,17 +12,18 @@ export class AccountService {
 
     constructor(private http: HttpClient) {}
 
-    isLoggedIn(): boolean {
-        return this.loggedIn;
+    isLoggedIn() {
+        return new Promise(function () {
+          return this.loggedIn;
+        });
     }
 
-    async logIn(data: LoginModel): Promise<any> {
-        const promise = this.http.post(`${API_URL}/Account/Login`, data).toPromise();
-        const res = await promise;
+    async logIn(data): Promise<any> {
         this.loggedIn = true;
-        if (res) {
+        if (data.login === DEFAULT_USER.email && DEFAULT_USER.password === data.password) {
             this.isAdmin = true;
         }
-        return res;
+        sessionStorage.setItem('isAdmin', `${this.isAdmin}`);
+        sessionStorage.setItem('loggedIn', `${this.loggedIn}`);
     }
 }

@@ -15,11 +15,15 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
   isMobile;
   authorizationButtonText: string;
+  isLoggedIn;
   constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {
     this.isMobile = this.checkIfMobile();
-    this.accountService.isLoggedIn() ? this.authorizationButtonText = 'Вихід' : this.authorizationButtonText = 'Вхід';
+    this.accountService.isLoggedIn().then(data => {
+        this.isLoggedIn = data;
+        this.isLoggedIn  ? this.authorizationButtonText = 'Вихід' : this.authorizationButtonText = 'Вхід';
+      });
   }
 
   onResize() {
