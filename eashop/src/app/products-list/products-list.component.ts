@@ -12,34 +12,12 @@ import {BehaviorSubject, Observable, of} from "rxjs";
 export class ProductsListComponent implements OnInit {
   pageNumber = 1;
   pagination: Pagination;
-  searchValue: string;
   @Input('productsAmount') productsAmount;
   @Input('products') goods;
-  constructor(private goodsService: GoodsService) { }
+  constructor() { }
 
   ngOnInit() {
     this.productsAmount = Number(this.productsAmount);
     this.pagination = new Pagination(this.pageNumber, this.productsAmount);
-  }
-
-  getProducts() {
-    this.goodsService.getGoods(this.pagination).then(data => {
-      this.goods = data;
-      console.log(data);
-    });
-  }
-
-  showMoreProducts() {
-    this.productsAmount+=6;
-    this.pagination.pageSize = this.productsAmount;
-    this.getProducts();
-  }
-
-  doSearch(){
-    if(this.searchValue != '') {
-      this.goodsService.searchGoods(this.searchValue.trim(), 9, 1).then(data => {
-        this.goods = data;
-      });
-    }
   }
 }
