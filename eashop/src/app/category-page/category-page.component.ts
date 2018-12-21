@@ -13,7 +13,7 @@ import {element} from "protractor";
   styleUrls: ['./category-page.component.scss']
 })
 export class CategoryPageComponent implements OnInit {
-  productsAmount: number = 9;
+  productsAmount: number = 10;
   pagination: Pagination = new Pagination(1, this.productsAmount);
   products;
   categories = [];
