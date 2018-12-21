@@ -7,7 +7,7 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -27,6 +27,7 @@ import {CategoryService} from "./api/services/categoryService";
 import {GoodsService} from './api/services/goodsService';
 import {AccountService} from './api/services/accountService';
 import {AuthGuard} from "./api/guards/auth-guard.service";
+import {AuthInterceptor} from "./api/interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -60,7 +61,12 @@ import {AuthGuard} from "./api/guards/auth-guard.service";
     GoodsService,
     AccountService,
     CategoryService,
-    AuthGuard
+    AuthGuard,
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true,
+      }
   ],
   bootstrap: [AppComponent]
 })

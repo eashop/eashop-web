@@ -31,12 +31,6 @@ export class GoodsService {
     }
 
     async createGoods(goods: Goods): Promise<any> {
-        let promise = Promise.resolve('');
-        if (!this.accountService.isLoggedIn()) {
-            promise = this.accountService.logIn(DEFAULT_USER);
-        }
-        const r = await promise;
-        delete goods.id;
         return this.http.post(`${API_URL}/goods`, goods).toPromise();
     }
 
@@ -44,20 +38,10 @@ export class GoodsService {
         if (!goods.id) {
             throw new Error('id is required');
         }
-        let promise = Promise.resolve('');
-        if (!this.accountService.isLoggedIn()) {
-            promise = this.accountService.logIn(DEFAULT_USER);
-        }
-        const d = await promise;
         return this.http.put(`${API_URL}/goods/${goods.id}`, goods).toPromise();
     }
 
     async deleteGoods(id: number): Promise<any> {
-        let promise = Promise.resolve();
-        if (!this.accountService.isLoggedIn()) {
-            promise = this.accountService.logIn(DEFAULT_USER);
-        }
-        const r = await promise;
         return this.http.delete(`${API_URL}/goods/${id}`).toPromise();
     }
 

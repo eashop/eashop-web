@@ -69,7 +69,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    this.accountService.logIn(this.loginForm.value);
-    this.router.navigate(['/category/all']);
+    this.accountService.logIn({
+        "email": "mail@mail.com",
+        "password": "Password12@",
+        "rememberMe": true
+    }).then(data => {
+      console.log(data);
+    });
+ //   this.router.navigate(['/category/all']);
   }
 }
