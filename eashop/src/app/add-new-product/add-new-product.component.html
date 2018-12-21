@@ -6,7 +6,7 @@
         <div class="field">
           <label for="productnName">Назва товару</label>
           <input formControlName="name" type="text" id="productnName" class="form-control" name="name" autocomplete="off">
-          <p *ngIf="productFormErrors.name">
+          <p class="error" *ngIf="productFormErrors.name">
             {{ productFormErrors.name }}
           </p>
         </div>
@@ -19,7 +19,7 @@
         <div class="field">
           <label for="productImage">Фото продукту</label>
           <input formControlName="image" type="text" id="productImage" class="form-control" name="image"  autocomplete="off">
-          <p *ngIf="productFormErrors.image">
+          <p class="error" *ngIf="productFormErrors.image">
             {{ productFormErrors.image }}
           </p>
         </div>
@@ -27,7 +27,7 @@
         <div class="field">
           <label for="productPrice">Ціна</label>
           <input formControlName="price" type="number" id="productPrice" class="form-control" name="price"  autocomplete="off">
-          <p *ngIf="productFormErrors.price">
+          <p class="error" *ngIf="productFormErrors.price">
             {{ productFormErrors.price }}
           </p>
         </div>
@@ -35,9 +35,9 @@
         <div class="field">
           <label for="productSize">Розімр</label>
           <input formControlName="size" type="text" id="productSize" class="form-control" name="size" autocomplete="off">
-          <span *ngIf="productFormErrors.size">
+          <p class="error" *ngIf="productFormErrors.size">
             {{ productFormErrors.size }}
-          </span>
+          </p>
         </div>
 
         <div class="field">
@@ -50,7 +50,7 @@
         <div class="field">
           <label for="productDescription">Опис продукту</label>
           <textarea id="productDescription" formControlName="description" rows=5></textarea>
-          <p *ngIf="productFormErrors.description">
+          <p class="error" *ngIf="productFormErrors.description">
             {{ productFormErrors.description }}
           </p>
         </div>

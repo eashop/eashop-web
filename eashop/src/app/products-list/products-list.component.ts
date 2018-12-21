@@ -30,14 +30,14 @@ export class ProductsListComponent implements OnInit {
   }
 
   showMoreProducts() {
-    this.productsAmount+=6;
+    this.productsAmount+=5;
     this.pagination.pageSize = this.productsAmount;
     this.getProducts();
   }
 
   doSearch(){
     if(this.searchValue != '') {
-      this.goodsService.searchGoods(this.searchValue.trim(), 9, 1).then(data => {
+      this.goodsService.searchGoods(this.searchValue.trim(), 30, 1).then(data => {
         this.goods = data;
       });
     }
