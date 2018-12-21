@@ -1,12 +1,6 @@
 <div class="page-wrapper">
   <div class="search"><input placeholder="Пошук" [(ngModel)]="searchValue" (keyup)="doSearch()" type="text"><i (click)="doSearch()" class="fas fa-search"></i></div>
   <div class="content-wrapper">
-    <form>
-      <div class="form-check" *ngFor="let category of categories; let i = index">
-        <input type="checkbox" (change)="checkCheckBoxvalue($event, category.id)" class="form-check-input" id="category{{i}}" #filter>
-        <label class="form-check-label" for="category{{i}}">{{category.name}}</label>
-      </div>
-    </form>
     <div class="products">
       <app-products-list [products]="products" [productsAmount]="productsAmount"></app-products-list>
       <div class="action-wrapper" *ngIf="!searchValue && !checkedBoxes">

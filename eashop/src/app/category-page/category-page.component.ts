@@ -54,23 +54,11 @@ export class CategoryPageComponent implements OnInit {
 
    getProducts (id?: number) {
     if(id) {
-      if(this.checkedBoxes > 1) {
-        this.productsCopy = this.products.slice();
-      }
       this.goodsService.getGoodsFromCategory(id).then(data => {
         this.products = data;
-        if(this.productsCopy){
-          this.productsCopy.forEach(product => {
-            this.products.push(product);
-          });
-        }
-        this.productsAmount = this.products.length;
-        this.pagination.pageSize = this.productsAmount;
         console.log(this.products);
       });
     } else {
-      this.productsAmount = 9;
-      this.pagination.pageSize = this.productsAmount;
       this.goodsService.getGoods(this.pagination).then(data => {
         this.products = data;
       });
@@ -83,45 +71,6 @@ export class CategoryPageComponent implements OnInit {
       this.goodsService.searchGoods(this.searchValue.trim(), 9, 1).then(data => {
         this.products = data;
       });
-    }
-  }
-
-  checkCheckBoxvalue(event, categoryId) {
-    if(event.target.checked) {
-      this.checkFilter();
-      this.getProducts(categoryId);
-    } else {
-      if(!this.checkFilter()) {
-        this.activeFilter = false;
-        switch (this.categoryPage) {
-          case 'men': this.getProducts(5); break;
-          case 'women': this.getProducts(6); break;
-          case 'all': this.getProducts(); break;
-        };
-      } else {
-        this.activeFilter = true;
-        this.removeProductsByCategoryId(categoryId);
-      }
-    }
-  }
-
-  checkFilter(){
-    this.checkedBoxes = 0;
-    this.checkboxes = document.querySelectorAll('.form-check-input');
-    for (let i = 0; i < this.checkboxes.length; i++) {
-      if(this.checkboxes[i].checked) {
-        this.checkedBoxes++;
-      }
-    }
-    return this.checkedBoxes > 0 ? true : false;
-  }
-
-  removeProductsByCategoryId(id){
-    console.log(this.products);
-    for(let i=0; i<this.products.length; i++) {
-      if(this.products[i].categoryId == id) {
-        this.products.splice(i, 1);
-      }
     }
   }
 
