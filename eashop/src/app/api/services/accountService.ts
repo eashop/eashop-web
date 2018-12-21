@@ -10,10 +10,13 @@ export class AccountService {
     private loggedIn = false;
     private isAdmin = false;
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {
+      this.loggedIn = false;
+      this.isAdmin = false;
+    }
 
     isLoggedIn() {
-        return new Promise(() => {
+        return new Promise( () => {
           return this.loggedIn;
         });
     }

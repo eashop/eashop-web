@@ -5,14 +5,17 @@ import {AccountService} from "../services/accountService";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  isLogin;
+  isAdmin;
   constructor(
     private accountService: AccountService,
     private router: Router) {
   }
 
   canActivate() {
-    const isLogin = this.accountService.isLoggedIn();
-    if (isLogin) {
+    this.isLogin = sessionStorage.getItem("loggedIn");
+    this.isAdmin = sessionStorage.getItem("isAdmin");
+    if (this.isLogin===true && this.isAdmin===true) {
       return true;
     } else {
       this.router.navigate(['/login']);

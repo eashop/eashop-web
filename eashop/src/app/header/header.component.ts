@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToAuthorizationPage() {
-    this.accountService.isLoggedIn() ? this.router.navigate(['/logout']) :
+    sessionStorage.getItem("loggedIn") ? this.router.navigate(['/category/all']) :
                                         this.router.navigate(['/login']);
   }
 }
