@@ -17,10 +17,11 @@ export class LoginComponent implements OnInit {
   };
   validationMessages = {
     'login': {
-      'required': 'Login is required'
+      'required': 'Вкажіть електронну адресу.',
+      'email': 'Е-mail адреса не валідна.'
     },
     'password': {
-      'required': 'Password is required.'
+      'required': 'Вкажіть пароль.'
     }
   };
   constructor(private formBuilder: FormBuilder,
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.loginForm = this.formBuilder.group({
-      login: ['', [Validators.required]],
+      login: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
 

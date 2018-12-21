@@ -1,17 +1,28 @@
-.form-wrapper{padding: 50px;}
+.form-wrapper {
+  padding: 50px;
+}
+
 .field {
   padding: 15px;
   .isActive {
     display: flex;
     justify-content: center;
 
-    #isActive{
+    #isActive {
       width: 15px;
       height: 15px;
     }
   }
 }
-textarea{width: 100%;}
-label.isActiveProduct{padding: 0 10px;}
-.error{
-  color: red;}
+
+textarea {
+  width: 100%;
+}
+
+label.isActiveProduct {
+  padding: 0 10px;
+}
+
+.error {
+  color: red;
+}

@@ -23,24 +23,24 @@ export class AddNewProductComponent implements OnInit {
   };
   validationMessages = {
     'name': {
-      'required': 'Product Name is required.',
-      'minlength': 'Product Name must be at least 2 characters long.',
-      'maxlength': 'Product name cannot be more than 50 characters long.'
+      'required': 'Назва товару є обов\'язковим полем.',
+      'minlength': 'Назва товару повинна складатися щонайменше з двох символів.',
+      'maxlength': 'Назва товару максимально може містити 30 символів.'
     },
     'description': {
-      'required': 'Description of product is required.'
+      'required': 'Опис товару є обов\'язковим полем.'
     },
     'image': {
-      'required': 'Image of product is required.',
-      'maxlength': 'Image url cannot be more than 255 characters long.'
+      'required': 'Зображення товару є обов\'язковим полем.',
+      'maxlength': 'Посилання на зображення максимально може містити 255 символів.'
     },
     'price': {
-      'required': 'Price of product is required.',
-      'min': 'Price cannot be less than zero'
+      'required': 'Вартість товару є обов\'язковим полем.',
+      'min': 'Вартість товару не може бути меншою за 0.'
     },
     'size': {
-      'required': 'Size of product is required.',
-      'maxlength': 'Size cannot be more than 10 characters long.'
+      'required': 'Розмір товару є обов\'язковим полеем.',
+      'maxlength': 'Розмір товару максимально може містити 10 символів.'
     }
   };
 

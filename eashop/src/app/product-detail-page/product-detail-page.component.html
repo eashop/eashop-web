@@ -1,14 +1,14 @@
 <div class="container">
   <div>
     <div class="product-wrapper">
-      <a class="goBackLink" (click)="goOnPrevPage()">Go back</a>
+      <a class="goBackLink" (click)="goOnPrevPage()">Повернутись назад</a>
       <div class="content-product-wrapper" *ngIf="product">
         <div class="img-wrapper"><img src="{{product.image}}" alt="{{product.name}}"></div>
         <div class="product-info-wrapper">
           <h3 *ngIf="product">{{product.name | uppercase}}</h3>
           <p class="description">{{product.description}}</p>
-          <p class="price"><span class="label">price:</span>{{product.price}} UAH</p>
-          <p class="size"><span class="label">size:</span>{{product.size}}</p>
+          <p class="price"><span class="label">ціна:</span>{{product.price}} ГРН</p>
+          <p class="size"><span class="label">розмір:</span>{{product.size}}</p>
         </div>
       </div>
     </div>

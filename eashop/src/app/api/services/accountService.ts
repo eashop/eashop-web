@@ -13,7 +13,7 @@ export class AccountService {
     constructor(private http: HttpClient) {}
 
     isLoggedIn() {
-        return new Promise(function () {
+        return new Promise(() => {
           return this.loggedIn;
         });
     }
