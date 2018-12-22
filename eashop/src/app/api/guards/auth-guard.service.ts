@@ -13,9 +13,9 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate() {
-    this.isLogin = sessionStorage.getItem("loggedIn");
+    this.isLogin = sessionStorage.getItem("isLoggedIn");
     this.isAdmin = sessionStorage.getItem("isAdmin");
-    if (this.isLogin===true && this.isAdmin===true) {
+    if (this.isLogin=='true' && this.isAdmin== 'true') {
       return true;
     } else {
       this.router.navigate(['/login']);

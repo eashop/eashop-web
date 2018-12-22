@@ -14,16 +14,12 @@ import {Router} from "@angular/router";
 
 export class HeaderComponent implements OnInit {
   isMobile;
-  authorizationButtonText: string;
+  authorizationButtonText: string ;
   isLoggedIn;
   constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit() {
     this.isMobile = this.checkIfMobile();
-    this.accountService.isLoggedIn().then(data => {
-        this.isLoggedIn = data;
-        this.isLoggedIn  ? this.authorizationButtonText = 'Вихід' : this.authorizationButtonText = 'Вхід';
-      });
   }
 
   onResize() {
@@ -37,7 +33,7 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToAuthorizationPage() {
-    sessionStorage.getItem("loggedIn") ? this.router.navigate(['/category/all']) :
+    sessionStorage.getItem("isLoggedIn") ? this.accountService.logOut() :
                                         this.router.navigate(['/login']);
   }
 }

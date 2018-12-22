@@ -16,13 +16,21 @@
           <label class="margin-r-10px isActiveProduct" for="isActive">Активувати товар</label>
         </div>
 
-        <div class="field">
-          <label for="productImage">Зображення товару</label>
-          <input formControlName="image" type="text" id="productImage" class="form-control" name="image"  autocomplete="off">
-          <p class="error" *ngIf="productFormErrors.image">
-            {{ productFormErrors.image }}
-          </p>
-        </div>
+        <!--<div class="field">-->
+          <!--<label for="productImage">Зображення товару</label>-->
+          <!--<input formControlName="image" type="text" id="productImage" class="form-control" name="image"  autocomplete="off">-->
+          <!--<p class="error" *ngIf="productFormErrors.image">-->
+            <!--{{ productFormErrors.image }}-->
+          <!--</p>-->
+        <!--</div>-->
+
+      <div class="field">
+        <label for="productImageFile">Зображення товару</label>
+        <input formControlName="image" type="file" id="productImageFile" name="imageFile"  autocomplete="off">
+        <p class="error" *ngIf="productFormErrors.image">
+          {{ productFormErrors.image }}
+        </p>
+      </div>
 
         <div class="field">
           <label for="productPrice">Ціна</label>

@@ -33,8 +33,8 @@ export class CategoryPageComponent implements OnInit {
   ngOnInit() {
     this.categoryPage = this.getCategoryNameFromRoute();
     switch (this.categoryPage) {
-      case 'men': this.getProducts(5); break;
-      case 'women': this.getProducts(6); break;
+      case 'men': this.getProducts(1); break;
+      case 'women': this.getProducts(2); break;
       case 'all': this.getProducts(); break;
     };
     this.categoryService.getCategories().then(data => {
@@ -61,6 +61,7 @@ export class CategoryPageComponent implements OnInit {
     } else {
       this.goodsService.getGoods(this.pagination).then(data => {
         this.products = data;
+        console.log(this.products);
       });
     }
   }
@@ -78,8 +79,8 @@ export class CategoryPageComponent implements OnInit {
     this.productsAmount+=6;
     this.pagination.pageSize = this.productsAmount;
     switch (this.categoryPage) {
-      case 'men': this.getProducts(5); break;
-      case 'women': this.getProducts(6); break;
+      case 'men': this.getProducts(1); break;
+      case 'women': this.getProducts(2); break;
       case 'all': this.getProducts(); break;
     };
   }

@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="form-wrapper">
-    <h3 class="title">Вхід</h3>
-    <form novalidate [formGroup]="loginForm" #loginFormDirective="ngForm" (ngSubmit)="onSubmit()">
+  <div class="form-wrapper row">
+    <form class="col-md-5 col-xs-12" novalidate [formGroup]="loginForm" #loginFormDirective="ngForm" (ngSubmit)="onSubmit()">
+      <h3 class="title">Вхід</h3>
 
       <div class="field">
         <label for="email">Електронна адреса</label>
-        <input formControlName="login" type="email" id="email" class="form-control" name="email" autocomplete="off">
-        <p class="error" *ngIf="loginFormErrors.login">
-          {{ loginFormErrors.login }}
+        <input formControlName="email" type="email" id="email" class="form-control" name="email" autocomplete="off">
+        <p class="error" *ngIf="loginFormErrors.email">
+          {{ loginFormErrors.email }}
         </p>
       </div>
 
@@ -20,9 +20,22 @@
       </div>
 
       <div class="field">
+        <input formControlName="rememberMe" type="checkbox" name="checkbox" id="checkboxRememberMe" aria-label="Checkbox for following text input">
+        <label for="checkboxRememberMe">Запам'ятати мене</label>
+      </div>
+
+      <div class="field action-wrapper">
         <button type="submit" [disabled]="loginForm.invalid" class="btn btn-light action-view-more">Увійти</button>
       </div>
 
     </form>
   </div>
+</div>
+
+<div class="message-wrapper error-message" *ngIf="isErrorAuthorization">
+  <span>Неправильний Email або пароль</span>
+</div>
+
+<div class="message-wrapper success-message" *ngIf="isSuccessAuthorization">
+  <span>Успішно</span>
 </div>

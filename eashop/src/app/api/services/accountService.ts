@@ -9,16 +9,10 @@ import { throwError, Observable } from 'rxjs';
 export class AccountService {
     private loggedIn = false;
     private isAdmin = false;
-    private headers;
 
     constructor(private http: HttpClient) {
       this.loggedIn = false;
       this.isAdmin = false;
-      this.headers = new HttpHeaders ({
-          'Access-Control-Request-Method': ,
-          'Access-Control-Request-Headers': 'origin',
-          'Origin': 'https://foo.bar.org'
-      });
     }
 
     isLoggedIn() {
@@ -27,13 +21,23 @@ export class AccountService {
         });
     }
 
-    async logIn(data): Promise<any> {
-        return this.http.post(`${API_URL}/Account/login`, data).toPromise();
-        // this.loggedIn = true;
-        // if (data.login === DEFAULT_USER.email && DEFAULT_USER.password === data.password) {
-        //     this.isAdmin = true;
-        // }
-        // sessionStorage.setItem('isAdmin', `${this.isAdmin}`);
-        // sessionStorage.setItem('loggedIn', `${this.loggedIn}`);
+     logIn(data): Observable<any> {
+        return this.http.post(`${API_URL}/Account/login`, data);
+    }
+
+    logOut() {
+      this.http.post(`${API_URL}/Account/logout`, {}).subscribe();
+      sessionStorage.removeItem('isAdmin');
+      sessionStorage.removeItem('isLoggedIn');
+    }
+
+    setAdmin(value: boolean) {
+      this.isAdmin = value;
+      sessionStorage.setItem('isAdmin', `${value}`);
+    }
+
+    setLoggedIn(value: boolean) {
+      this.loggedIn = value;
+      sessionStorage.setItem('isLoggedIn', `${value}`);
     }
 }
