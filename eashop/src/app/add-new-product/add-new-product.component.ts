@@ -3,6 +3,7 @@ import {GoodsService} from "../api/services/goodsService";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Category} from "../api/models/category";
 import {CategoryService} from "../api/services/categoryService";
+import {FileService} from "../api/services/fileService";
 
 @Component({
   selector: 'app-add-new-product',
@@ -17,7 +18,7 @@ export class AddNewProductComponent implements OnInit {
   productFormErrors = {
     'name': '',
     'description': '',
-    'image': '',
+    'imageFile': '',
     'price': '',
     'size': ''
   };
@@ -30,9 +31,8 @@ export class AddNewProductComponent implements OnInit {
     'description': {
       'required': 'Опис товару є обов\'язковим полем.'
     },
-    'image': {
-      'required': 'Зображення товару є обов\'язковим полем.',
-      'maxlength': 'Посилання на зображення максимально може містити 255 символів.'
+    'imageFile': {
+      'required': 'Зображення товару є обов\'язковим полем.'
     },
     'price': {
       'required': 'Вартість товару є обов\'язковим полем.',
@@ -47,6 +47,7 @@ export class AddNewProductComponent implements OnInit {
   constructor(
     private  categoryService: CategoryService,
     private goodsService: GoodsService,
+    private fileService: FileService,
     private formBuilder: FormBuilder) {
     this.createForm();
   }
@@ -59,7 +60,7 @@ export class AddNewProductComponent implements OnInit {
     this.productForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', Validators.required],
-      image: ['', [Validators.required, Validators.maxLength(255)]],
+      imageFile: [],
       price: [0, [Validators.required, Validators.min(0)]],
       size: ['', [Validators.required, Validators.maxLength(10)]],
       active: false,
@@ -97,18 +98,29 @@ export class AddNewProductComponent implements OnInit {
   }
 
   onSubmit() {
+    let img = document.getElementById('productImageFile');
+    let formData:FormData = new FormData();
+    formData.append('uploadFile', img[0].file);
+    console.log(img[0].file);
+    console.log(formData);
+
     let product = this.productForm.value;
     product.categoryId = this.getCategoryId(this.productForm.value.categoryId);
     product.size = product.size.toUpperCase();
-    this.goodsService.createGoods(product)
-      .then((product) => {
-        console.log("New Product: " + product);
-      })
-      .catch((error) => {
-        console.log("Error: " + error);
-      });
-    this.productFormDirective.resetForm();
-    this.resetProductForm();
+    console.log(this.productForm.value);
+    console.log(this.productForm.value.imageFile);
+    this.fileService.uploadFile(formData).subscribe(data => {
+      console.log(data);
+    });
+    // this.goodsService.createGoods(product)
+    //   .then((product) => {
+    //     console.log("New Product: " + product);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error: " + error);
+    //   });
+    // this.productFormDirective.resetForm();
+    // this.resetProductForm();
   }
 
   resetProductForm() {

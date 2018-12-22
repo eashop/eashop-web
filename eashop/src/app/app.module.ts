@@ -28,6 +28,7 @@ import {GoodsService} from './api/services/goodsService';
 import {AccountService} from './api/services/accountService';
 import {AuthGuard} from "./api/guards/auth-guard.service";
 import {AuthInterceptor} from "./api/interceptors/auth.interceptor";
+import {FileService} from "./api/services/fileService";
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import {AuthInterceptor} from "./api/interceptors/auth.interceptor";
     GoodsService,
     AccountService,
     CategoryService,
+    FileService,
     AuthGuard,
       {
           provide: HTTP_INTERCEPTORS,

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="form-wrapper">
     <h3 class="title">Форма додавання нового товару</h3>
-    <form novalidate [formGroup]="productForm" #productFormDirective="ngForm" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="productForm" #productFormDirective="ngForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
 
         <div class="field">
           <label for="productName">Назва товару</label>
@@ -26,9 +26,9 @@
 
       <div class="field">
         <label for="productImageFile">Зображення товару</label>
-        <input formControlName="image" type="file" id="productImageFile" name="imageFile"  autocomplete="off">
-        <p class="error" *ngIf="productFormErrors.image">
-          {{ productFormErrors.image }}
+        <input formControlName="imageFile" type="file" id="productImageFile" name="imageFile"  autocomplete="off">
+        <p class="error" *ngIf="productFormErrors.imageFile">
+          {{ productFormErrors.imageFile }}
         </p>
       </div>
 

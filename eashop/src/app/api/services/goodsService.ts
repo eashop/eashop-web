@@ -11,7 +11,7 @@ import { Pagination } from '../models/pagination';
 @Injectable()
 export class GoodsService {
 
-    constructor(private http: HttpClient, private accountService: AccountService) { }
+    constructor(private http: HttpClient) { }
 
     getGoods(pagination?: Pagination): Promise<any> {
         if (pagination) {
