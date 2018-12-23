@@ -1,64 +1,64 @@
 <div class="container">
   <div class="form-wrapper">
-    <h3 class="title">Форма додавання нового товару</h3>
+    <h3 class="title" *ngIf="isAddingProduct">Форма додавання нового товару</h3>
+    <h3 class="title" *ngIf="isUpdatingProduct">Форма редагування товару</h3>
+
     <form novalidate [formGroup]="productForm" #productFormDirective="ngForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
 
-        <div class="field">
-          <label for="productName">Назва товару</label>
-          <input formControlName="name" type="text" id="productName" class="form-control" name="name" autocomplete="off">
-          <p class="error" *ngIf="productFormErrors.name">
-            {{ productFormErrors.name }}
-          </p>
-        </div>
-
+      <div class="field">
+        <label for="productName">Назва товару</label>
+        <input formControlName="name" type="text" id="productName" class="form-control" name="name" autocomplete="off">
+        <p class="error" *ngIf="productFormErrors.name">
+          {{ productFormErrors.name }}
+        </p>
+      </div>
 
       <div class="field">
         <label for="productImageFile">Зображення товару</label>
-        <input formControlName="imageFile" type="file" id="productImageFile" name="imageFile"  autocomplete="off" multiple>
+        <input formControlName="imageFile" type="file" id="productImageFile" name="imageFile" (change)="imageChange()" autocomplete="off" multiple>
         <p class="error" *ngIf="productFormErrors.imageFile">
           {{ productFormErrors.imageFile }}
         </p>
-        <div class="img-wrapper" *ngIf="product"><img src="{{product.image}}"/></div>
+        <div class="img-wrapper" *ngIf="product && isUpdatingProduct"><img src="{{product.image}}"/></div>
+        <div class="img-wrapper" *ngIf="imgPreview"><img src="{{imgPreview}}"/></div>
       </div>
 
+      <div class="field">
+        <label for="productPrice">Ціна</label>
+        <input formControlName="price" type="number" id="productPrice" class="form-control" name="price"  autocomplete="off">
+        <p class="error" *ngIf="productFormErrors.price">
+          {{ productFormErrors.price }}
+        </p>
+      </div>
 
+      <div class="field">
+        <label for="productSize">Розмір</label>
+        <input formControlName="size" type="text" id="productSize" class="form-control" name="size" autocomplete="off">
+        <p class="error" *ngIf="productFormErrors.size">
+          {{ productFormErrors.size }}
+        </p>
+      </div>
 
-        <div class="field">
-          <label for="productPrice">Ціна</label>
-          <input formControlName="price" type="number" id="productPrice" class="form-control" name="price"  autocomplete="off">
-          <p class="error" *ngIf="productFormErrors.price">
-            {{ productFormErrors.price }}
-          </p>
-        </div>
+      <div class="field">
+        <label for="categoryName">Назва категорії</label>
+          <select class="custom-select" id="categoryName" #catName>
+            <option></option>
+            <option *ngFor="let category of categories">{{ category.name }}</option>
+          </select>
+      </div>
 
-        <div class="field">
-          <label for="productSize">Розмір</label>
-          <input formControlName="size" type="text" id="productSize" class="form-control" name="size" autocomplete="off">
-          <p class="error" *ngIf="productFormErrors.size">
-            {{ productFormErrors.size }}
-          </p>
-        </div>
+      <div class="field">
+        <label for="productDescription">Опис товару</label>
+        <textarea id="productDescription" formControlName="description" rows=5></textarea>
+        <p class="error" *ngIf="productFormErrors.description">
+          {{ productFormErrors.description }}
+        </p>
+      </div>
 
-        <div class="field">
-          <label for="categoryName">Назва категорії</label>
-            <select class="custom-select" id="categoryName" #catName>
-              <option></option>
-              <option *ngFor="let category of categories">{{ category.name }}</option>
-            </select>
-        </div>
-
-        <div class="field">
-          <label for="productDescription">Опис товару</label>
-          <textarea id="productDescription" formControlName="description" rows=5></textarea>
-          <p class="error" *ngIf="productFormErrors.description">
-            {{ productFormErrors.description }}
-          </p>
-        </div>
-
-        <div class="field">
-          <button *ngIf="isActiveAddButton" type="submit" [disabled]="productForm.invalid" class="btn btn-light action-view-more">Додати</button>
-          <button *ngIf="isActiveUpdateButton" type="submit" [disabled]="productForm.invalid" class="btn btn-light action-view-more">Оновити</button>
-        </div>
+      <div class="field">
+        <button *ngIf="isAddingProduct" type="submit" [disabled]="productForm.invalid" class="btn btn-light action-view-more">Додати</button>
+        <button *ngIf="isUpdatingProduct" type="submit" [disabled]="productForm.invalid" class="btn btn-light action-view-more">Оновити</button>
+      </div>
 
     </form>
   </div>

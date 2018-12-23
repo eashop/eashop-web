@@ -42,17 +42,8 @@ export class GoodsService {
         return this.http.delete(`${API_URL}/goods/${id}`).toPromise();
     }
 
-    async getGoodsFromCategory(id: number, pagination? :Pagination) {
-      if(pagination) {
-        return this.getGoods(pagination).then(data => {
-          return data.filter(data => data.categoryId === id);
-        });
-      }else {
-        return this.getGoods().then(data => {
-          return data.filter(data => data.categoryId === id);
-        });
-      }
-
+    getGoodsFromCategory(id: number, pagination? :Pagination) {
+      return this.http.get(`${API_URL}/Categories/${id}/goods?PageSize=${pagination.pageSize}&PageNumber=${pagination.pageNumber}`);
     }
 
     async searchGoods(name: string, pageSize: number, pageNumber: number, categoryId?: number): Promise<any> {

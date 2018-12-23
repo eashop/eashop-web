@@ -22,8 +22,9 @@ export class AddNewProductComponent implements OnInit {
   fileUrl;
   categoryName;
   product;
-  isActiveUpdateButton: boolean = false;
-  isActiveAddButton: boolean = false;
+  imgPreview;
+  isUpdatingProduct: boolean = false;
+  isAddingProduct: boolean = false;
   productFormErrors = {
     'name': '',
     'description': '',
@@ -277,4 +278,26 @@ export class AddNewProductComponent implements OnInit {
       "categoryId":  this.getCategoryId(this.elCategoryName.nativeElement.value)
     }
   }
+
+  loadGoodObjectPUT() {
+    return {
+      "id": this.product.id,
+      "name": `${this.productForm.value.name}`,
+      "description": `${this.productForm.value.description}`,
+      "image": this.fileUrl,
+      "price": this.productForm.value.price,
+      "size": `${this.productForm.value.size.toUpperCase()}`,
+      "active": true,
+      "categoryId":  this.getCategoryId(this.elCategoryName.nativeElement.value)
+    }
+  }
+
+  imageChange() {
+    let tempimg = this.getFileInFormDataFormat(this.getFileFromForm());
+    this.fileService.uploadFile(tempimg).subscribe(data => {
+      this.imgPreview = `${API_URL}/File/${data['fileName']}`;;
+    })
+  }
+
+
 }

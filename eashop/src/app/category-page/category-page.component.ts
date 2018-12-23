@@ -14,7 +14,7 @@ import {e} from "@angular/core/src/render3";
   styleUrls: ['./category-page.component.scss']
 })
 export class CategoryPageComponent implements OnInit {
-  productsAmount: number = 14;
+  productsAmount: number = 10;
   pagination: Pagination = new Pagination(1, this.productsAmount);
   products;
   categories = [];
@@ -53,7 +53,7 @@ export class CategoryPageComponent implements OnInit {
 
    getProducts (id?: number) {
     if(id) {
-      this.goodsService.getGoodsFromCategory(id, this.pagination).then(data => {
+      this.goodsService.getGoodsFromCategory(id, this.pagination).subscribe(data => {
         this.products = data;
       });
     } else {
@@ -67,17 +67,17 @@ export class CategoryPageComponent implements OnInit {
   doSearch(){
     if(this.getCategoryIdByRoute() > 0){
       if(this.searchValue != '') {
-          this.goodsService.searchGoods(this.searchValue.trim(), 14, 1, this.getCategoryIdByRoute()).then(data => {
+          this.goodsService.searchGoods(this.searchValue.trim(), 10, 1, this.getCategoryIdByRoute()).then(data => {
             this.products = data;
           });
       } else {
-        this.goodsService.getGoodsFromCategory(this.getCategoryIdByRoute(), this.pagination).then(data => {
+        this.goodsService.getGoodsFromCategory(this.getCategoryIdByRoute(), this.pagination).subscribe(data => {
           this.products = data;
         });
       }
     } else {
       if(this.searchValue != '') {
-        this.goodsService.searchGoods(this.searchValue.trim(), 14, 1).then(data => {
+        this.goodsService.searchGoods(this.searchValue.trim(), 10, 1).then(data => {
           this.products = data;
         });
       } else {
@@ -89,7 +89,7 @@ export class CategoryPageComponent implements OnInit {
   }
 
   showMoreProducts() {
-    this.productsAmount+=14;
+    this.productsAmount+=10;
     this.pagination.pageSize = this.productsAmount;
     switch (this.categoryPage) {
       case 'men': this.getProducts(1); break;
