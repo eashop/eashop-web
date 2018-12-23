@@ -26,3 +26,31 @@ label.isActiveProduct {
 .error {
   color: red;
 }
+
+
+.message-wrapper {
+  width: 350px;
+  height: min-content;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  position: absolute;
+  left: 37%;
+  bottom: 90px;
+
+  span {
+    font-size: 14px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.error-message {
+  background: rgba(216, 0, 0, 0.5);
+}
+
+.success-message {
+  background: rgba(11, 152, 96, 0.5);
+}

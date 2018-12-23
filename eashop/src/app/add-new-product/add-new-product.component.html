@@ -26,7 +26,7 @@
 
       <div class="field">
         <label for="productImageFile">Зображення товару</label>
-        <input formControlName="imageFile" type="file" id="productImageFile" name="imageFile"  autocomplete="off">
+        <input formControlName="imageFile" type="file" id="productImageFile" name="imageFile"  autocomplete="off" multiple>
         <p class="error" *ngIf="productFormErrors.imageFile">
           {{ productFormErrors.imageFile }}
         </p>
@@ -71,3 +71,12 @@
     </form>
   </div>
 </div>
+
+<div class="message-wrapper error-message" *ngIf="isError">
+  <span>Помилка. Продукт не добавлено.</span>
+</div>
+
+<div class="message-wrapper success-message" *ngIf="isSuccess">
+  <span>Успішно</span>
+</div>
+

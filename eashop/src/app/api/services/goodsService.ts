@@ -30,8 +30,8 @@ export class GoodsService {
         return this.http.get(`${API_URL}/goods/${id}`).toPromise();
     }
 
-    async createGoods(goods: Goods): Promise<any> {
-        return this.http.post(`${API_URL}/goods`, goods).toPromise();
+     createGoods(goods: Goods): Observable<any> {
+        return this.http.post(`${API_URL}/goods`, goods);
     }
 
     async editGoods(goods: Goods): Promise<any> {
