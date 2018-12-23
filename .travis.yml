@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "8.11.1"
+
+branches:
+  only:
+    - master
+    - develop
+
+before_script:
+  - cd eashop
+  - npm install -g @angular/cli
+  - npm install --save-dev @angular-devkit/build-angular
+
+script:
+  - ng build --prod
