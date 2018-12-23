@@ -29,6 +29,7 @@ import {AccountService} from './api/services/accountService';
 import {AuthGuard} from "./api/guards/auth-guard.service";
 import {AuthInterceptor} from "./api/interceptors/auth.interceptor";
 import {FileService} from "./api/services/fileService";
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {FileService} from "./api/services/fileService";
     SliderComponent,
     ProductCardComponent,
     ProductsListComponent,
-    AddNewProductComponent
+    AddNewProductComponent,
+    EditProductComponent
   ],
   imports: [
     AppRoutingModule,
