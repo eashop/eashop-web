@@ -222,7 +222,7 @@ export class AddNewProductComponent implements OnInit {
   }
 
   sendFormPUT() {
-    this.goodsService.editGoods(this.loadGoodObject())
+    this.goodsService.editGoods(this.loadGoodObjectPUT())
       .subscribe((data) => {
           if(data) {
             this.isSuccess = true;
@@ -295,7 +295,7 @@ export class AddNewProductComponent implements OnInit {
   imageChange() {
     let tempimg = this.getFileInFormDataFormat(this.getFileFromForm());
     this.fileService.uploadFile(tempimg).subscribe(data => {
-      this.imgPreview = `${API_URL}/File/${data['fileName']}`;;
+      this.imgPreview = `${API_URL}/File/${data['fileName']}`;
     })
   }
 
