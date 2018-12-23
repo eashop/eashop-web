@@ -22,8 +22,8 @@ export class AddNewProductComponent implements OnInit {
   fileUrl;
   categoryName;
   product;
-  isActiveUpdateButton: boolean = false;
-  isActiveAddButton: boolean = false;
+  isUpdatingProduct: boolean = false;
+  isAddingProduct: boolean = false;
   productFormErrors = {
     'name': '',
     'description': '',
@@ -63,9 +63,9 @@ export class AddNewProductComponent implements OnInit {
     this.createForm();
 
     if(this.router.url == '/add-product') {
-      this.isActiveAddButton = true;
+      this.isAddingProduct = true;
     } else {
-      this.isActiveUpdateButton = true;
+      this.isUpdatingProduct = true;
     }
   }
 
@@ -221,7 +221,7 @@ export class AddNewProductComponent implements OnInit {
   }
 
   sendFormPUT() {
-    this.goodsService.editGoods(this.loadGoodObject())
+    this.goodsService.editGoods(this.loadGoodObjectPUT())
       .subscribe((data) => {
           if(data) {
             this.isSuccess = true;
@@ -268,6 +268,18 @@ export class AddNewProductComponent implements OnInit {
 
   loadGoodObject() {
     return {
+      "name": `${this.productForm.value.name}`,
+      "description": `${this.productForm.value.description}`,
+      "image": this.fileUrl,
+      "price": this.productForm.value.price,
+      "size": `${this.productForm.value.size.toUpperCase()}`,
+      "active": true,
+      "categoryId":  this.getCategoryId(this.elCategoryName.nativeElement.value)
+    }
+  }
+
+  loadGoodObjectPUT() {
+    return {
       "id": this.product.id,
       "name": `${this.productForm.value.name}`,
       "description": `${this.productForm.value.description}`,
@@ -279,6 +291,9 @@ export class AddNewProductComponent implements OnInit {
     }
   }
 
+  imageChange() {
+    console.log('change');
+  }
 
 
 }
