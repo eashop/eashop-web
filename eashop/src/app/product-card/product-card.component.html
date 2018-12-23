@@ -1,0 +1,13 @@
+<div class="product-card">
+  <div class="product-img-wrapper">
+    <img src="{{product.image}}">
+  </div>
+  <div class="product-content-wrapper">
+    <p class="price">{{product.price}} <span>UAH</span></p>
+    <p>{{product.name}}</p>
+  </div>
+  <div class="product-links-wrapper">
+    <button [routerLink]="['/product', product.id]" class="btn action-details">Деталі</button>
+    <a class="btn action-like"><i class="far fa-heart"></i></a>
+  </div>
+</div>

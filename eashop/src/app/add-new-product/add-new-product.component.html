@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="form-wrapper">
+    <h3 class="title">Форма додавання нового товару</h3>
+    <form novalidate [formGroup]="productForm" #productFormDirective="ngForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+
+        <div class="field">
+          <label for="productName">Назва товару</label>
+          <input formControlName="name" type="text" id="productName" class="form-control" name="name" autocomplete="off">
+          <p class="error" *ngIf="productFormErrors.name">
+            {{ productFormErrors.name }}
+          </p>
+        </div>
+
+        <div class="field isActive">
+          <input formControlName="active" type="checkbox" id="isActive" name="isActive">
+          <label class="margin-r-10px isActiveProduct" for="isActive">Активувати товар</label>
+        </div>
+
+        <!--<div class="field">-->
+          <!--<label for="productImage">Зображення товару</label>-->
+          <!--<input formControlName="image" type="text" id="productImage" class="form-control" name="image"  autocomplete="off">-->
+          <!--<p class="error" *ngIf="productFormErrors.image">-->
+            <!--{{ productFormErrors.image }}-->
+          <!--</p>-->
+        <!--</div>-->
+
+      <div class="field">
+        <label for="productImageFile">Зображення товару</label>
+        <input formControlName="imageFile" type="file" id="productImageFile" name="imageFile"  autocomplete="off" multiple>
+        <p class="error" *ngIf="productFormErrors.imageFile">
+          {{ productFormErrors.imageFile }}
+        </p>
+      </div>
+
+        <div class="field">
+          <label for="productPrice">Ціна</label>
+          <input formControlName="price" type="number" id="productPrice" class="form-control" name="price"  autocomplete="off">
+          <p class="error" *ngIf="productFormErrors.price">
+            {{ productFormErrors.price }}
+          </p>
+        </div>
+
+        <div class="field">
+          <label for="productSize">Розмір</label>
+          <input formControlName="size" type="text" id="productSize" class="form-control" name="size" autocomplete="off">
+          <p class="error" *ngIf="productFormErrors.size">
+            {{ productFormErrors.size }}
+          </p>
+        </div>
+
+        <div class="field">
+          <label for="categoryName">Назва категорії</label>
+            <select class="custom-select" id="categoryName">
+              <option></option>
+              <option *ngFor="let category of categories">{{ category.name }}</option>
+            </select>
+        </div>
+
+        <div class="field">
+          <label for="productDescription">Опис товару</label>
+          <textarea id="productDescription" formControlName="description" rows=5></textarea>
+          <p class="error" *ngIf="productFormErrors.description">
+            {{ productFormErrors.description }}
+          </p>
+        </div>
+
+        <div class="field">
+          <button type="submit" [disabled]="productForm.invalid" class="btn btn-light action-view-more">Додати</button>
+        </div>
+
+    </form>
+  </div>
+</div>
+
+<div class="message-wrapper error-message" *ngIf="isError">
+  <span>Помилка. Продукт не добавлено.</span>
+</div>
+
+<div class="message-wrapper success-message" *ngIf="isSuccess">
+  <span>Успішно</span>
+</div>
+

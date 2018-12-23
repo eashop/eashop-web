@@ -1,0 +1,19 @@
+.products-list-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+}
+
+input {
+  padding-left: 20px;
+}
+
+

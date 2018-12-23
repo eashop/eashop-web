@@ -1,31 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="../../assets/images/logo.webp" width="80" height="80" alt="">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse offset-4" id="navbarMenu">
-    <ul class="navbar-nav categories">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Чоловіки</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Жінки</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav menu">
-      <li class="nav-item">
-        <a class="nav-link"><i class="fas fa-search"></i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><i class="fas fa-shopping-cart"></i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link"><i class="fas fa-sign-in-alt"></i></a>
-      </li>
-    </ul>
-  </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" [ngClass]="{'navbar-mobile': isMobile}">
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/images/logo.png" width="80" height="80" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse offset-4" id="navbarMenu">
+      <ul class="navbar-nav categories">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/category/all']">Всі товари</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/category/men']">Чоловіки</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/category/women']">Жінки</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav menu">
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateToAuthorizationPage()"><i class="fas fa-sign-in-alt"></i>
+        </a>
+        </li>
+      </ul>
+    </div>
 </nav>
 
 

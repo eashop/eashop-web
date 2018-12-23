@@ -1,0 +1,21 @@
+.product-list-title-wrapper {
+  margin: 20px;
+  padding-top: 20px;
+
+  p { text-align: center; font-size: 25px; }
+}
+
+.action-wrapper { margin: 20px; display: flex; justify-content: center; }
+
+.products{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.products-list-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
