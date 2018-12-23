@@ -20,6 +20,7 @@
           {{ productFormErrors.imageFile }}
         </p>
         <div class="img-wrapper" *ngIf="product && isUpdatingProduct"><img src="{{product.image}}"/></div>
+        <div class="img-wrapper" *ngIf="imgPreview"><img src="{{imgPreview}}"/></div>
       </div>
 
       <div class="field">

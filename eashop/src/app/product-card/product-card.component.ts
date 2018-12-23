@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import {AccountService} from "../api/services/accountService";
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
@@ -7,9 +8,11 @@ import { Router } from '@angular/router';
 })
 export class ProductCardComponent implements OnInit {
   @Input('product') product;
-  constructor() { }
+  isAdmin;
+  constructor(private accountService: AccountService) { }
 
   ngOnInit() {
+    this.isAdmin = sessionStorage.getItem("isLoggedIn") && sessionStorage.getItem("isAdmin");
   }
 
 }

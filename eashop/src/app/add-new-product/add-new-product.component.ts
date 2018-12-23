@@ -22,6 +22,7 @@ export class AddNewProductComponent implements OnInit {
   fileUrl;
   categoryName;
   product;
+  imgPreview;
   isUpdatingProduct: boolean = false;
   isAddingProduct: boolean = false;
   productFormErrors = {
@@ -292,7 +293,10 @@ export class AddNewProductComponent implements OnInit {
   }
 
   imageChange() {
-    console.log('change');
+    let tempimg = this.getFileInFormDataFormat(this.getFileFromForm());
+    this.fileService.uploadFile(tempimg).subscribe(data => {
+      this.imgPreview = `${API_URL}/File/${data['fileName']}`;;
+    })
   }
 
 
