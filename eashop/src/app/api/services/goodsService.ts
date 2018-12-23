@@ -34,11 +34,8 @@ export class GoodsService {
         return this.http.post(`${API_URL}/goods`, goods);
     }
 
-    async editGoods(goods: Goods): Promise<any> {
-        if (!goods.id) {
-            throw new Error('id is required');
-        }
-        return this.http.put(`${API_URL}/goods/${goods.id}`, goods).toPromise();
+    editGoods(goods: Goods): Observable<any> {
+        return this.http.put(`${API_URL}/goods/${goods.id}`, goods);
     }
 
     async deleteGoods(id: number): Promise<any> {

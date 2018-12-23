@@ -19,7 +19,6 @@ export class AddNewProductComponent implements OnInit {
   isSuccess: boolean = false;
   isError: boolean = false;
   fileUrl;
-  fileFromServer;
   categoryName;
   product;
   isActiveUpdateButton: boolean = false;
@@ -197,13 +196,52 @@ export class AddNewProductComponent implements OnInit {
 
   uploadDataPOST() {
     this.fileService.uploadFile(this.getFileInFormDataFormat(this.getFileFromForm())).subscribe(data => {
-        this.fileUrl = data['fileName'];
+        this.fileUrl = `${API_URL}/File/${data['fileName']}`;
       },
       error => console.log(error.status),
-      () => this.sendForm());
+      () => this.sendFormPOST());
   }
 
-  sendForm() {
+  uploadDataPUT() {
+    console.log(this.productForm.value.imageFile);
+    if(this.productForm.value.imageFile) {
+      let file = this.getFileInFormDataFormat(this.getFileFromForm());
+      this.fileService.uploadFile(file).subscribe(data => {
+          this.fileUrl = `${API_URL}/File/${data['fileName']}`;
+        },
+        error => console.log(error.status),
+        () => this.sendFormPUT());
+
+    } else {
+      this.fileUrl = this.product.image;
+      this.sendFormPUT();
+    }
+  }
+
+  sendFormPUT() {
+    this.goodsService.editGoods(this.loadGoodObject())
+      .subscribe((data) => {
+          if(data) {
+            this.isSuccess = true;
+            setTimeout(() => {
+              this.isSuccess = false;
+            }, 2000);
+          }
+        },
+        error => {
+          console.log("Error: " + error);
+          if(error) {
+            this.isError = true;
+            setTimeout(() => {
+              this.isError = false;
+            }, 2000);
+          }
+        });
+    this.productFormDirective.resetForm();
+    this.resetProductForm();
+  }
+
+  sendFormPOST() {
     this.goodsService.createGoods(this.loadGoodObject())
       .subscribe((data) => {
         if(data) {
@@ -228,10 +266,10 @@ export class AddNewProductComponent implements OnInit {
 
   loadGoodObject() {
     return {
-      "id": 0,
+      "id": this.product.id,
       "name": `${this.productForm.value.name}`,
       "description": `${this.productForm.value.description}`,
-      "image": `${API_URL}/File/${this.fileUrl}`,
+      "image": this.fileUrl,
       "price": this.productForm.value.price,
       "size": `${this.productForm.value.size.toUpperCase()}`,
       "active": true,
