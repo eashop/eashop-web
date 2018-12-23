@@ -45,8 +45,7 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     SliderComponent,
     ProductCardComponent,
     ProductsListComponent,
-    AddNewProductComponent,
-    EditProductComponent
+    AddNewProductComponent
   ],
   imports: [
     AppRoutingModule,
