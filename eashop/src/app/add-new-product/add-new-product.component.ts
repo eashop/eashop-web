@@ -128,7 +128,11 @@ export class AddNewProductComponent implements OnInit {
   }
 
   onSubmit() {
-    this.uploadData();
+    if(this.router.url == '/add-product') {
+      this.uploadDataPOST();
+    } else {
+      this.uploadDataPUT();
+    }
   }
 
   setForm() {
@@ -191,7 +195,7 @@ export class AddNewProductComponent implements OnInit {
     return formData;
   }
 
-  uploadData() {
+  uploadDataPOST() {
     this.fileService.uploadFile(this.getFileInFormDataFormat(this.getFileFromForm())).subscribe(data => {
         this.fileUrl = data['fileName'];
       },
