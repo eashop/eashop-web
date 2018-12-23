@@ -64,9 +64,9 @@ export class AddNewProductComponent implements OnInit {
     this.createForm();
 
     if(this.router.url == '/add-product') {
-      this.isActiveAddButton = true;
+      this.isAddingProduct = true;
     } else {
-      this.isActiveUpdateButton = true;
+      this.isUpdatingProduct = true;
     }
   }
 

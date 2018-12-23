@@ -13,6 +13,7 @@ export class ProductDetailPageComponent implements OnInit {
 
   isErrorDelete: boolean = false;
   isSuccessDelete: boolean = false;
+  isAdmin:boolean = false;
   product: Goods;
   constructor(
     private goodsService: GoodsService,
@@ -22,6 +23,10 @@ export class ProductDetailPageComponent implements OnInit {
 
 
   ngOnInit() {
+    if(sessionStorage.getItem("isLoggedIn") == 'true' && sessionStorage.getItem("isAdmin") == 'true') {
+      this.isAdmin = true;
+    }
+
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       const productId = +params.get('id');
       return this.goodsService.getSingleGoods(productId)
