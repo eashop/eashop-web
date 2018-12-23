@@ -9,4 +9,8 @@ export class FileService {
   uploadFile(file) {
     return this.http.post(`${API_URL}/File`, file);
   }
+
+  getFile(name: string) {
+    return this.http.get(`${API_URL}/File/${name}`);
+  }
 }

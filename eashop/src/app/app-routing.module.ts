@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'notfound', component: NotFoundComponent },
-  { path: 'edit-product', component: EditProductComponent,
+  { path: 'edit-product/:id', component: AddNewProductComponent,
     canActivate: [AuthGuard]}
 ];
 

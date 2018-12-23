@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {GoodsService} from "../api/services/goodsService";
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Category} from "../api/models/category";
 import {CategoryService} from "../api/services/categoryService";
 import {FileService} from "../api/services/fileService";
 import {API_URL} from "../api/apiConstants";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-new-product',
@@ -12,13 +13,17 @@ import {API_URL} from "../api/apiConstants";
   styleUrls: ['./add-new-product.component.scss']
 })
 export class AddNewProductComponent implements OnInit {
-
+  @ViewChild('productFormDirective') productFormDirective;
   categories: Category[];
   productForm: FormGroup;
   isSuccess: boolean = false;
   isError: boolean = false;
   fileUrl;
-  @ViewChild('productFormDirective') productFormDirective;
+  fileFromServer;
+  categoryName;
+  product;
+  isActiveUpdateButton: boolean = false;
+  isActiveAddButton: boolean = false;
   productFormErrors = {
     'name': '',
     'description': '',
@@ -52,23 +57,44 @@ export class AddNewProductComponent implements OnInit {
     private  categoryService: CategoryService,
     private goodsService: GoodsService,
     private fileService: FileService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     this.createForm();
+
+    if(this.router.url == '/add-product') {
+      this.isActiveAddButton = true;
+    } else {
+      this.isActiveUpdateButton = true;
+    }
   }
 
   ngOnInit() {
     this.getCategories();
+    if(this.router.url !== '/add-product') {
+      this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+        const productId = +params.get('id');
+        return this.goodsService.getSingleGoods(productId)
+          .then((product) => {
+            this.product = product;
+            this.categoryName = this.getCategoryName(this.product.categoryId);
+            this.setForm();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+    }
   }
 
   createForm() {
     this.productForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       description: ['', Validators.required],
-      imageFile: [],
+      imageFile:  [],
       price: [0, [Validators.required, Validators.min(0)]],
       size: ['', [Validators.required, Validators.maxLength(10)]],
-      active: false,
-      categoryName: ['Men', [Validators.min(1), Validators.max(6)]],
+      categoryName: ['Men', [Validators.min(1), Validators.max(6)]]
     });
 
     this.productForm.valueChanges
@@ -105,11 +131,23 @@ export class AddNewProductComponent implements OnInit {
     this.uploadData();
   }
 
+  setForm() {
+    this.productForm.reset({
+      name: `${this.product.name}`,
+      description: `${this.product.description}`,
+      imageFile: '',
+      price: this.product.price,
+      size: `${this.product.size}`,
+      active: true,
+      categoryName: `${this.categoryName}`
+    });
+  }
+
   resetProductForm() {
     this.productForm.reset({
       name: '',
       description: '',
-      image: '',
+      imageFile: '',
       price: 0,
       size: '',
       active: false,
@@ -135,19 +173,26 @@ export class AddNewProductComponent implements OnInit {
     }
   }
 
+  getCategoryName(id) {
+    for (let category of this.categories) {
+      if (category.id == id) {
+        return category.name;
+      }
+    }
+  }
+
   getFileFromForm() {
     return (<HTMLInputElement>document.getElementById('productImageFile')).files[0];
   }
 
-  getFileInFormDataFormat() {
+  getFileInFormDataFormat(img) {
     let formData:FormData = new FormData();
-    formData.append('file', this.getFileFromForm());
+    formData.append('file', img);
     return formData;
   }
 
-
   uploadData() {
-    this.fileService.uploadFile(this.getFileInFormDataFormat()).subscribe(data => {
+    this.fileService.uploadFile(this.getFileInFormDataFormat(this.getFileFromForm())).subscribe(data => {
         this.fileUrl = data['fileName'];
       },
       error => console.log(error.status),
@@ -185,7 +230,7 @@ export class AddNewProductComponent implements OnInit {
       "image": `${API_URL}/File/${this.fileUrl}`,
       "price": this.productForm.value.price,
       "size": `${this.productForm.value.size.toUpperCase()}`,
-      "active": this.productForm.value.active,
+      "active": true,
       "categoryId":  this.getCategoryId(this.productForm.value.categoryName)
     }
   }
