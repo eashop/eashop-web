@@ -41,7 +41,7 @@
 
         <div class="field">
           <label for="categoryName">Назва категорії</label>
-            <select class="custom-select" id="categoryName">
+            <select class="custom-select" id="categoryName" #catName>
               <option></option>
               <option *ngFor="let category of categories">{{ category.name }}</option>
             </select>

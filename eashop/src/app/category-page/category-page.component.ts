@@ -6,6 +6,7 @@ import {Pagination} from "../api/models/pagination";
 import {CategoryService} from "../api/services/categoryService";
 import {forEach} from "@angular/router/src/utils/collection";
 import {element} from "protractor";
+import {e} from "@angular/core/src/render3";
 
 @Component({
   selector: 'app-category-page',
@@ -13,15 +14,13 @@ import {element} from "protractor";
   styleUrls: ['./category-page.component.scss']
 })
 export class CategoryPageComponent implements OnInit {
-  productsAmount: number = 10;
+  productsAmount: number = 14;
   pagination: Pagination = new Pagination(1, this.productsAmount);
   products;
   categories = [];
   searchValue;
   activeFilter: boolean = false;
-  checkboxes;
   checkedBoxes = 0;
-  productsCopy;
   categoryPage;
 
   constructor(
@@ -31,7 +30,7 @@ export class CategoryPageComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.categoryPage = this.getCategoryNameFromRoute();
+    this.categoryPage = this.getRoute();
     switch (this.categoryPage) {
       case 'men': this.getProducts(1); break;
       case 'women': this.getProducts(2); break;
@@ -42,7 +41,7 @@ export class CategoryPageComponent implements OnInit {
     });
   }
 
-   getCategoryNameFromRoute(){
+   getRoute(){
     if(this.router.url == '/category/men') {
       return 'men';
     } else if(this.router.url == '/category/women') {
@@ -54,34 +53,58 @@ export class CategoryPageComponent implements OnInit {
 
    getProducts (id?: number) {
     if(id) {
-      this.goodsService.getGoodsFromCategory(id).then(data => {
+      this.goodsService.getGoodsFromCategory(id, this.pagination).then(data => {
         this.products = data;
-        console.log(this.products);
       });
     } else {
       this.goodsService.getGoods(this.pagination).then(data => {
         this.products = data;
-        console.log(this.products);
       });
     }
   }
 
 
   doSearch(){
-    if(this.searchValue != '') {
-      this.goodsService.searchGoods(this.searchValue.trim(), 9, 1).then(data => {
-        this.products = data;
-      });
+    if(this.getCategoryIdByRoute() > 0){
+      if(this.searchValue != '') {
+          this.goodsService.searchGoods(this.searchValue.trim(), 14, 1, this.getCategoryIdByRoute()).then(data => {
+            this.products = data;
+          });
+      } else {
+        this.goodsService.getGoodsFromCategory(this.getCategoryIdByRoute(), this.pagination).then(data => {
+          this.products = data;
+        });
+      }
+    } else {
+      if(this.searchValue != '') {
+        this.goodsService.searchGoods(this.searchValue.trim(), 14, 1).then(data => {
+          this.products = data;
+        });
+      } else {
+        this.goodsService.getGoods(this.pagination).then(data => {
+          this.products = data;
+        });
+      }
     }
   }
 
   showMoreProducts() {
-    this.productsAmount+=6;
+    this.productsAmount+=14;
     this.pagination.pageSize = this.productsAmount;
     switch (this.categoryPage) {
       case 'men': this.getProducts(1); break;
       case 'women': this.getProducts(2); break;
       case 'all': this.getProducts(); break;
     };
+  }
+
+  getCategoryIdByRoute() {
+    if(this.router.url == '/category/men') {
+      return 1;
+    } else if(this.router.url == '/category/women') {
+      return 2;
+    } else {
+      return -1;
+    }
   }
 }

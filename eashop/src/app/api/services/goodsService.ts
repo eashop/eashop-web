@@ -42,13 +42,25 @@ export class GoodsService {
         return this.http.delete(`${API_URL}/goods/${id}`).toPromise();
     }
 
-    async getGoodsFromCategory(id: number) {
-      return this.getGoods().then(data => {
-        return data.filter(data => data.categoryId === id);
-      });
+    async getGoodsFromCategory(id: number, pagination? :Pagination) {
+      if(pagination) {
+        return this.getGoods(pagination).then(data => {
+          return data.filter(data => data.categoryId === id);
+        });
+      }else {
+        return this.getGoods().then(data => {
+          return data.filter(data => data.categoryId === id);
+        });
+      }
+
     }
 
-    async searchGoods(name: string, pageSize: number, pageNumber: number): Promise<any> {
-      return this.http.post(`${API_URL}/Goods/search`, {name, pageSize, pageNumber}).toPromise();
+    async searchGoods(name: string, pageSize: number, pageNumber: number, categoryId?: number): Promise<any> {
+      if(categoryId) {
+        return this.http.post(`${API_URL}/Goods/search`, {name, categoryId, pageSize, pageNumber}).toPromise();
+      } else {
+        return this.http.post(`${API_URL}/Goods/search`, {name, pageSize, pageNumber}).toPromise();
+      }
+
     }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {GoodsService} from "../api/services/goodsService";
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Category} from "../api/models/category";
@@ -14,6 +14,7 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 })
 export class AddNewProductComponent implements OnInit {
   @ViewChild('productFormDirective') productFormDirective;
+  @ViewChild('catName') elCategoryName:ElementRef;
   categories: Category[];
   productForm: FormGroup;
   isSuccess: boolean = false;
@@ -144,6 +145,7 @@ export class AddNewProductComponent implements OnInit {
       active: true,
       categoryName: `${this.categoryName}`
     });
+    this.elCategoryName.nativeElement.value = this.categoryName;
   }
 
   resetProductForm() {
@@ -273,7 +275,7 @@ export class AddNewProductComponent implements OnInit {
       "price": this.productForm.value.price,
       "size": `${this.productForm.value.size.toUpperCase()}`,
       "active": true,
-      "categoryId":  this.getCategoryId(this.productForm.value.categoryName)
+      "categoryId":  this.getCategoryId(this.elCategoryName.nativeElement.value)
     }
   }
 
