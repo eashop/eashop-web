@@ -61,6 +61,5 @@ export class GoodsService {
       } else {
         return this.http.post(`${API_URL}/Goods/search`, {name, pageSize, pageNumber}).toPromise();
       }
-
     }
 }

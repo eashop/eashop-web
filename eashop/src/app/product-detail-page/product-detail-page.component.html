@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="row">
+    <button (click)="deleteProduct()" class="btn btn-danger pull-left">Видалити товар</button>
+  </div>
   <div>
     <div class="product-wrapper">
       <a class="goBackLink" (click)="goOnPrevPage()">Повернутись назад</a>
@@ -13,7 +16,14 @@
       </div>
     </div>
   </div>
+
+  <div class="message-wrapper error-message" *ngIf="isErrorDelete">
+    <span>Сталася помилка під час видалення!</span>
+  </div>
+
+  <div class="message-wrapper success-message" *ngIf="isSuccessDelete">
+    <span>Успішно видалено.</span>
+  </div>
+
 </div>
-
-
 

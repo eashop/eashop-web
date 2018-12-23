@@ -11,6 +11,8 @@ import { Location } from '@angular/common';
 })
 export class ProductDetailPageComponent implements OnInit {
 
+  isErrorDelete: boolean = false;
+  isSuccessDelete: boolean = false;
   product: Goods;
   constructor(
     private goodsService: GoodsService,
@@ -31,6 +33,26 @@ export class ProductDetailPageComponent implements OnInit {
           return this.router.navigate(['/not-found']);
         });
     });
+  }
+
+  deleteProduct() {
+     this.goodsService.deleteGoods(this.product.id)
+      .then((product) => {
+        this.isSuccessDelete = true;
+        this.product = product;
+        setTimeout(() => {
+          this.isSuccessDelete = false;
+          return this.router.navigate(['/category/all']);
+        }, 2000);
+      })
+      .catch((error) => {
+        console.log(error);
+        this.isErrorDelete = true;
+        setTimeout(() => {
+          this.isErrorDelete = false;
+        }, 2000);
+        return this.router.navigate(['/not-found']);
+      })
   }
 
   goOnPrevPage() {

@@ -268,7 +268,6 @@ export class AddNewProductComponent implements OnInit {
 
   loadGoodObject() {
     return {
-      "id": this.product.id,
       "name": `${this.productForm.value.name}`,
       "description": `${this.productForm.value.description}`,
       "image": this.fileUrl,
@@ -278,7 +277,4 @@ export class AddNewProductComponent implements OnInit {
       "categoryId":  this.getCategoryId(this.elCategoryName.nativeElement.value)
     }
   }
-
-
-
 }
