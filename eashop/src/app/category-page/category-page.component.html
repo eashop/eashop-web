@@ -1,3 +1,5 @@
+<a *ngIf="isAdmin" class="nav-link" [routerLink]="['/add-product']">Добавити новий продукт
+</a>
 <div class="page-wrapper">
   <div class="search"><input placeholder="Пошук" [(ngModel)]="searchValue" (keyup)="doSearch()" type="text"><i (click)="doSearch()" class="fas fa-search"></i></div>
   <div class="content-wrapper">

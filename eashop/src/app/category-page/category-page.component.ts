@@ -22,6 +22,8 @@ export class CategoryPageComponent implements OnInit {
   activeFilter: boolean = false;
   checkedBoxes = 0;
   categoryPage;
+  isAdmin;
+  isLoggedIn;
 
   constructor(
     private categoryService: CategoryService,
@@ -30,6 +32,10 @@ export class CategoryPageComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    if(sessionStorage.getItem("isLoggedIn") == 'true' &&  sessionStorage.getItem("isAdmin") == 'true') {
+      this.isAdmin = true;
+      this.isLoggedIn = true;
+    }
     this.categoryPage = this.getRoute();
     switch (this.categoryPage) {
       case 'men': this.getProducts(1); break;

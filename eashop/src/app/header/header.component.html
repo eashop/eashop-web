@@ -19,6 +19,10 @@
       </ul>
       <ul class="navbar-nav menu">
         <li class="nav-item">
+          <a *ngIf="isAdmin" class="nav-link" [routerLink]="['/add-product']">Добавити новий продукт
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" (click)="navigateToAuthorizationPage()"><i class="fas fa-sign-in-alt"></i>
         </a>
         </li>
